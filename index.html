@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Folks Pub — DRE Ponta Grossa</title>
+<title>Folks Pub — DRE Ponta Grossa Atualizado</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -1046,6 +1046,267 @@
     .projection-fit-table td { font-size: 5.9px; padding: 5px 1px; }
   }
 
+
+
+  /* ===== DRE COMPARATIVO INSERIDO DO EXCEL ===== */
+  .dre-compare-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(180deg, rgba(15,30,42,.42), rgba(0,0,0,.12));
+  }
+  .dre-compare-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+  }
+  .dre-compare-table th {
+    padding: 14px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    color: #ffffff !important;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: 900;
+  }
+  .dre-compare-table th:first-child {
+    text-align: left;
+    color: rgba(255,255,255,.76) !important;
+  }
+  .dre-compare-table td {
+    padding: 13px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.055);
+    color: #ffffff;
+    font-weight: 800;
+    text-align: right;
+    font-size: 14px;
+  }
+  .dre-compare-table td:first-child {
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+  }
+  .dre-compare-section td {
+    padding: 12px;
+    background: linear-gradient(90deg, rgba(0,207,255,0.10), rgba(255,255,255,0.02));
+    color: #00cfff !important;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 12px !important;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+  }
+  .dre-compare-table .pct-col { width: 58px; color: rgba(196,215,255,.72) !important; }
+  .dre-compare-table .num-col { min-width: 130px; }
+  .sc-cons { color: #ff4d6d !important; }
+  .sc-base { color: #f5c542 !important; }
+  .sc-otim { color: #00e0a4 !important; }
+  .dre-result-row td {
+    font-size: 16px;
+    font-weight: 950 !important;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .scenario-tabs .tab:nth-child(1).active { background:#ff4d6d; color:#1b0006; }
+  .scenario-tabs .tab:nth-child(2).active { background:#f5c542; color:#1a1200; }
+  .scenario-tabs .tab:nth-child(3).active { background:#00e0a4; color:#001c16; }
+  @media (max-width: 720px) {
+    .dre-compare-table { min-width: 780px; }
+    .dre-compare-table td, .dre-compare-table th { padding: 10px 8px; font-size: 12px; }
+  }
+
+
+  /* ===== DRE NA ÍNTEGRA: compacto e com hierarquia ===== */
+  .full-dre-table {
+    min-width: 1080px !important;
+  }
+  .full-dre-table th {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    background: #101722;
+    padding: 9px 10px !important;
+    font-size: 10px !important;
+  }
+  .full-dre-table td {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    line-height: 1.18 !important;
+  }
+  .full-dre-table td:first-child {
+    width: 360px;
+    max-width: 360px;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+  }
+  .full-dre-table .pct-col {
+    width: 72px;
+    min-width: 72px;
+    color: rgba(255,255,255,.88) !important;
+  }
+  .full-dre-table .num-col,
+  .full-dre-table td.sc-cons,
+  .full-dre-table td.sc-base,
+  .full-dre-table td.sc-otim {
+    min-width: 132px;
+    white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+  }
+  .dre-full-section td {
+    background: linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.035)) !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-family: 'DM Mono', monospace !important;
+    font-weight: 950 !important;
+    border-top: 1px solid rgba(255,255,255,.15);
+  }
+  .dre-subtotal-row td {
+    background: rgba(255,255,255,.075) !important;
+    font-weight: 950 !important;
+  }
+  .dre-result-row td {
+    background: rgba(0,224,164,.12) !important;
+    font-weight: 950 !important;
+    border-top: 1px solid rgba(0,224,164,.35) !important;
+  }
+  .dre-margin-row td {
+    background: rgba(245,197,66,.18) !important;
+    color: #f5c542 !important;
+    font-weight: 950 !important;
+  }
+  .dre-breakeven-row td,
+  .dre-pb-row td {
+    background: rgba(0,224,164,.075) !important;
+    font-weight: 900 !important;
+  }
+  @media (max-width: 720px) {
+    .full-dre-table { min-width: 1000px !important; }
+    .full-dre-table td:first-child { width: 300px; max-width: 300px; }
+    .full-dre-table td, .full-dre-table th { padding: 6px 7px !important; font-size: 10.5px !important; }
+  }
+
+  /* ===== AJUSTES SOLICITADOS: sem abas, dashboard consolidado e 3 paybacks ===== */
+  .scenario-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .scenario-overview-card,
+  .exec-dre-card,
+  .payback-scenario-card {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(201,168,76,.24);
+    border-radius: 10px;
+    padding: 18px;
+    min-width: 0;
+  }
+  .scenario-overview-card.scenario-cons,
+  .exec-dre-card.scenario-cons,
+  .payback-scenario-card.scenario-cons { border-color: rgba(255,77,109,.55); background: linear-gradient(135deg, rgba(255,77,109,.11), rgba(255,77,109,.025)); }
+  .scenario-overview-card.scenario-base,
+  .exec-dre-card.scenario-base,
+  .payback-scenario-card.scenario-base { border-color: rgba(245,197,66,.58); background: linear-gradient(135deg, rgba(245,197,66,.12), rgba(245,197,66,.025)); }
+  .scenario-overview-card.scenario-otim,
+  .exec-dre-card.scenario-otim,
+  .payback-scenario-card.scenario-otim { border-color: rgba(0,224,164,.60); background: linear-gradient(135deg, rgba(0,224,164,.12), rgba(0,224,164,.025)); }
+  .scenario-overview-title,
+  .exec-dre-title,
+  .payback-scenario-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 900;
+    margin-bottom: 14px;
+  }
+  .scenario-overview-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .scenario-overview-meta {
+    display: grid;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .scenario-overview-meta .key-row { padding: 7px 0; }
+  .exec-dre-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .exec-dre-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) auto auto;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    padding: 9px 0;
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .exec-dre-row .label { color: #ffffff; overflow-wrap: anywhere; }
+  .exec-dre-row .value, .exec-dre-row .percent {
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .exec-dre-row.result {
+    border-top: 1px solid rgba(255,255,255,.16);
+    margin-top: 8px;
+    padding-top: 12px;
+    font-size: 13px;
+  }
+  .exec-dre-row.subtotal { background: rgba(255,255,255,.025); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 6px; }
+  .payback-scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .payback-scenario-card {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 18px;
+    align-items: center;
+  }
+  .payback-scenario-card .pb-ring { width: 128px; height: 128px; }
+  .payback-scenario-card .pb-ring::before { width: 92px; height: 92px; }
+  .payback-metrics { display: grid; gap: 10px; }
+  .payback-metric-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 900;
+  }
+  .payback-metric-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--gold);
+  }
+  @media (max-width: 1100px) {
+    .scenario-overview-grid,
+    .exec-dre-grid,
+    .payback-scenario-grid { grid-template-columns: 1fr; }
+    .payback-scenario-card { grid-template-columns: 140px minmax(0,1fr); }
+  }
+  @media (max-width: 640px) {
+    .payback-scenario-card { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .payback-metrics { width: 100%; }
+    .scenario-overview-value { font-size: 22px; }
+    .exec-dre-row { grid-template-columns: minmax(0,1fr) auto; }
+    .exec-dre-row .percent { grid-column: 2; font-size: 10px; opacity: .85; }
+  }
+
 </style>
 </head>
 <body>
@@ -1053,131 +1314,69 @@
 <div class="header">
   <div class="header-left">
     <h1>FOLKS PUB — PONTA GROSSA</h1>
-    <p>DRE Projetada · Análise de Investimento · Franquia Sertanejo</p>
+    <p>DRE Projetada · Análise de Investimento · Premissas alinhadas ao DRE da franquia</p>
   </div>
   <div class="header-badge">
-    <span>📊 MODELO PUB · DADOS ATUALIZADOS</span>
-  </div>
-</div>
-
-<div class="scenario-bar">
-  <span class="scenario-label">Cenário</span>
-  <div class="scenario-tabs">
-    <button class="tab" onclick="setScenario('cons')">Conservador</button>
-    <button class="tab active" onclick="setScenario('base')">Base</button>
-    <button class="tab" onclick="setScenario('otim')">Otimista</button>
+    <span>📊 MODELO PUB · EXCEL ATUALIZADO</span>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- KPIs -->
-  <div class="kpi-row">
-    <div class="kpi-card">
-      <div class="kpi-label">Receita Mensal</div>
-      <div class="kpi-value kpi-gold" id="kpi-receita">R$ 600k</div>
-      <div class="kpi-sub" id="kpi-receita-sub">Cenário Base</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Lucro Líquido / Mês</div>
-      <div class="kpi-value" id="kpi-lucro">−R$ 35,2k</div>
-      <div class="kpi-sub" id="kpi-margem-sub">Margem −5,9%</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Ponto de Equilíbrio</div>
-      <div class="kpi-value kpi-amber" id="kpi-pe">R$ 234k</div>
-      <div class="kpi-sub" id="kpi-pe-sub">Receita mínima / mês</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Payback Simples</div>
-      <div class="kpi-value kpi-amber" id="kpi-payback">Sem PB</div>
-      <div class="kpi-sub" id="kpi-payback-sub">Sobre R$ 2M</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Investimento Total</div>
-      <div class="kpi-value kpi-neutral" id="kpi-invest">R$ 2,0M</div>
-      <div class="kpi-sub" id="kpi-invest-sub">COF: R$ 1,33M</div>
-    </div>
-  </div>
+  <div class="section-divider">PANORAMA DOS CENÁRIOS</div>
+  <div class="scenario-overview-grid" id="scenario-overview-grid"></div>
 
-  <!-- DRE + Waterfall -->
   <div class="section-divider">DRE MENSAL</div>
-  <div class="grid-2">
 
-    <!-- DRE Table -->
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title">Demonstrativo de Resultado</span>
-        <span class="card-badge" id="dre-badge">BASE · R$ 600k</span>
-      </div>
-      <table class="dre-table">
+  <div class="chart-card wide">
+    <div class="card-header">
+      <span class="card-title">DRE na íntegra — comparativo por cenário</span>
+      <span class="card-badge">Dados completos da aba DRE_Mensal</span>
+    </div>
+    <div class="dre-compare-wrap">
+      <table class="dre-compare-table full-dre-table">
         <thead>
           <tr>
-            <th>Item</th>
-            <th>Valor</th>
-            <th>% Receita</th>
+            <th>Linha</th>
+            <th class="sc-cons num-col">Pessimista</th>
+            <th class="pct-col">A.H.</th>
+            <th class="sc-base num-col">Moderado</th>
+            <th class="pct-col">A.H.</th>
+            <th class="sc-otim num-col">Otimista</th>
+            <th class="pct-col">A.H.</th>
           </tr>
         </thead>
-        <tbody id="dre-body">
-        </tbody>
+        <tbody id="dre-compare-body"></tbody>
       </table>
-    </div>
-
-    <!-- Stacked cost breakdown -->
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title">Composição de Custos</span>
-        <span class="card-badge">Variáveis + Fixos</span>
-      </div>
-      <div class="chart-wrap" style="height:320px">
-        <canvas id="costChart"></canvas>
-      </div>
     </div>
   </div>
 
-  <!-- Payback + Projecao -->
-  <div class="section-divider">PROJEÇÃO 60 MESES</div>
-  <div class="grid-2">
-
-    <!-- Payback ring + info -->
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title">Indicador de Payback Projetado</span>
-        <span class="card-badge" id="pb-badge">SIMPLES</span>
-      </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center; min-height: 200px;">
-        <div class="payback-display">
-          <div class="pb-ring" id="pb-ring" style="--pb-color: #00e0a4; --pb-pct: 0deg">
-            <div class="pb-inner">
-              <div class="pb-number" id="pb-num">∞</div>
-              <div class="pb-unit" id="pb-un">meses</div>
-            </div>
-          </div>
-          <div class="pb-label" id="pb-status">Sem payback</div>
-        </div>
-        <div>
-          <div class="waterfall-item" style="flex-direction:column;align-items:flex-start;gap:6px;">
-            <span class="kpi-label">Acum. Mês 60</span>
-            <span class="kpi-value" id="acum60" style="font-size:20px;">−</span>
-          </div>
-          <div style="height:16px;"></div>
-          <div class="waterfall-item" style="flex-direction:column;align-items:flex-start;gap:6px;">
-            <span class="kpi-label">Margem Líquida</span>
-            <span class="kpi-value" id="margin-pct" style="font-size:20px;">−</span>
-          </div>
-        </div>
-      </div>
+  <div class="chart-card wide">
+    <div class="card-header">
+      <span class="card-title">Composição de Custos</span>
+      <span class="card-badge">Todos os cenários</span>
     </div>
+    <div class="chart-wrap" style="height:320px">
+      <canvas id="costChart"></canvas>
+    </div>
+  </div>
 
-    <!-- Acumulado 60m chart -->
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title">Acumulado pós-CAPEX — receita linear (60 meses)</span>
-        <span class="card-badge">Lucro mensal fixo</span>
-      </div>
-      <div class="chart-wrap" style="height:240px">
-        <canvas id="acumChart"></canvas>
-      </div>
+  <div class="section-divider">PROJEÇÃO 60 MESES</div>
+  <div class="chart-card wide">
+    <div class="card-header">
+      <span class="card-title">Indicadores de Payback Projetado por Cenário</span>
+      <span class="card-badge">Pessimista · Moderado · Otimista</span>
+    </div>
+    <div class="payback-scenario-grid" id="payback-cards"></div>
+  </div>
+
+  <div class="chart-card wide">
+    <div class="card-header">
+      <span class="card-title">Acumulado pós-CAPEX — receita linear (60 meses)</span>
+      <span class="card-badge">Lucro mensal fixo</span>
+    </div>
+    <div class="chart-wrap" style="height:260px">
+      <canvas id="acumChart"></canvas>
     </div>
   </div>
 
@@ -1192,15 +1391,12 @@
     <div class="pb-caption" id="receitaPbCaption"></div>
   </div>
 
-
-  <!-- Sensibilidade -->
   <div class="section-divider">SENSIBILIDADE</div>
   <div class="grid-2">
-
     <div class="chart-card">
       <div class="card-header">
         <span class="card-title">Faturamento × Lucro × Payback</span>
-        <span class="card-badge" id="sens-badge">Breakeven = R$ 234k</span>
+        <span class="card-badge" id="sens-badge">−</span>
       </div>
       <div class="chart-wrap" style="height:300px">
         <canvas id="sensChart"></canvas>
@@ -1227,118 +1423,47 @@
         </table>
       </div>
     </div>
-
   </div>
 
-  <!-- Composição fixos + premissas-chave -->
   <div class="section-divider">ESTRUTURA DE CUSTOS</div>
-  <div class="grid-2">
-
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title" id="fixos-title">Despesas Fixas Mensais — R$ 113k</span>
-        <span class="card-badge">Composição</span>
-      </div>
-      <div class="fixos-donut-grid">
-        <div class="fixos-donut-canvas">
-          <canvas id="fixosChart"></canvas>
-        </div>
-        <div class="fixos-legend" id="fixosCustomLegend" aria-label="Legenda das despesas fixas"></div>
-      </div>
+  <div class="chart-card wide">
+    <div class="card-header">
+      <span class="card-title" id="fixos-title">Composição de custos — Moderado</span>
+      <span class="card-badge">Base DRE</span>
     </div>
-
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title">Principais Linhas Fixas</span>
-        <span class="card-badge">Top custos mensais</span>
+    <div class="fixos-donut-grid">
+      <div class="fixos-donut-canvas">
+        <canvas id="fixosChart"></canvas>
       </div>
-      <div class="key-list" id="fixos-key-list">
-        <div class="key-row"><span>Folha + encargos</span><strong>R$ 50.000</strong></div>
-        <div class="key-row"><span>Atrações / shows / eventos</span><strong>R$ 25.000</strong></div>
-        <div class="key-row"><span>Aluguel + condomínio + IPTU</span><strong>R$ 16.000</strong></div>
-        <div class="key-row"><span>Segurança</span><strong>R$ 6.000</strong></div>
-        <div class="key-row"><span>Outros custos fixos</span><strong>R$ 5.000</strong></div>
-        <div class="key-row"><span>Total despesas fixas</span><strong>R$ 113.000</strong></div>
-      </div>
+      <div class="fixos-legend" id="fixosCustomLegend" aria-label="Legenda da composição de custos"></div>
     </div>
-    </div>
+  </div>
 
-  <!-- Detalhamento do modelo -->
   <div class="section-divider" id="sec-dashboard">DASHBOARD EXECUTIVO</div>
   <div class="chart-card wide">
     <div class="card-header">
       <span class="card-title">Dashboard Executivo</span>
-      <span class="card-badge">KPIs + Leitura Executiva</span>
+      <span class="card-badge">Receita até Resultado Líquido</span>
     </div>
-    <div class="mini-kpi-grid">
-      <div class="mini-kpi">
-        <div class="mini-label">Investimento</div>
-        <div class="mini-value">R$ 2.000.000</div>
-        <div class="mini-sub">Investimento total</div>
-      </div>
-      <div class="mini-kpi scenario-base">
-        <div class="mini-label">Receita Base</div>
-        <div class="mini-value">R$ 400.000</div>
-        <div class="mini-sub">Receita mensal cenário base</div>
-      </div>
-      <div class="mini-kpi">
-        <div class="mini-label">Ponto de Equilíbrio</div>
-        <div class="mini-value">R$ 233.954</div>
-        <div class="mini-sub">Faturamento mínimo para zerar lucro</div>
-      </div>
-      <div class="mini-kpi">
-        <div class="mini-label">Gap Base vs Equilíbrio</div>
-        <div class="mini-value">R$ 166.046</div>
-        <div class="mini-sub">Negativo = abaixo do equilíbrio</div>
-      </div>
-      <div class="mini-kpi scenario-base">
-        <div class="mini-label">Lucro Base</div>
-        <div class="mini-value">R$ 76.200</div>
-        <div class="mini-sub">Resultado mensal no cenário base</div>
-      </div>
-      <div class="mini-kpi scenario-otim">
-        <div class="mini-label">Lucro Otimista</div>
-        <div class="mini-value">R$ 130.075</div>
-        <div class="mini-sub">Resultado mensal no cenário otimista</div>
-      </div>
-      <div class="mini-kpi scenario-otim">
-        <div class="mini-label">PB Otimista Linear</div>
-        <div class="mini-value">15 meses</div>
-        <div class="mini-sub">Investimento ÷ lucro otimista</div>
-      </div>
-      <div class="mini-kpi scenario-otim">
-        <div class="mini-label">PB Otimista Projetado</div>
-        <div class="mini-value">35 meses</div>
-        <div class="mini-sub">Mês em que o acumulado passa de zero</div>
-      </div>
-      <div class="mini-kpi scenario-cons">
-        <div class="mini-label">PB Conservador Linear</div>
-        <div class="mini-value">74 meses</div>
-        <div class="mini-sub">Investimento ÷ lucro conservador</div>
-      </div>
-      <div class="mini-kpi scenario-cons">
-        <div class="mini-label">PB Conservador Projetado</div>
-        <div class="mini-value">Sem PB</div>
-        <div class="mini-sub">Mês em que o acumulado passa de zero</div>
-      </div>
-      <div class="mini-kpi scenario-base">
-        <div class="mini-label">PB Base Linear</div>
-        <div class="mini-value">26 meses</div>
-        <div class="mini-sub">Investimento ÷ lucro base</div>
-      </div>
-      <div class="mini-kpi scenario-base">
-        <div class="mini-label">PB Base Projetado</div>
-        <div class="mini-value">Sem PB</div>
-        <div class="mini-sub">Mês em que o acumulado passa de zero</div>
-      </div></div>
+    <div class="exec-dre-grid" id="exec-dre-grid"></div>
     <div class="grid-2 detail-grid">
       <div>
         <div class="sheet-subtitle">Resumo por cenário</div>
-        <div class="table-scroll"><table class="sheet-table"><thead><tr><th>Cenário</th><th>Receita mensal</th><th>Lucro líquido</th><th>Margem líquida</th><th>PB simples (meses)</th><th>PB projetado (meses)</th></tr></thead><tbody><tr class="scenario-row scenario-cons"><td class="">Conservador</td><td class=" num">R$ 290.000</td><td class=" num pos">R$ 27.070</td><td class=" num pos">9,3%</td><td class=" num">73,9</td><td class="">Sem PB</td></tr><tr class="scenario-row scenario-base"><td class="">Base</td><td class=" num">R$ 400.000</td><td class=" num pos">R$ 76.200</td><td class=" num pos">19,1%</td><td class=" num">26,2</td><td class="">Sem PB</td></tr><tr class="scenario-row scenario-otim"><td class="">Otimista</td><td class=" num">R$ 525.000</td><td class=" num pos">R$ 130.075</td><td class=" num pos">24,8%</td><td class=" num">15,4</td><td class=" num">35</td></tr></tbody></table></div>
+        <div class="table-scroll">
+          <table class="sheet-table">
+            <thead><tr><th>Cenário</th><th>Receita mensal</th><th>Lucro líquido</th><th>Margem líquida</th><th>PB linear (meses)</th><th>PB projetado</th></tr></thead>
+            <tbody id="exec-summary-body"></tbody>
+          </table>
+        </div>
       </div>
       <div>
         <div class="sheet-subtitle">Leitura executiva</div>
-        <div class="table-scroll"><table class="sheet-table"><thead><tr><th>Indicador</th><th>Valor</th><th>Sinal</th><th>Interpretação</th><th>Fórmula-base</th></tr></thead><tbody><tr><td class="">Status Base</td><td class="">Lucro positivo</td><td class="">OK</td><td class="">O cenário base gera caixa positivo.</td><td class="">Lucro Base + Ponto de equilíbrio</td></tr><tr><td class="">Status Otimista</td><td class="">Bom</td><td class="">Bom</td><td class="">Retorno abaixo de 36 meses.</td><td class="">Lucro + Payback</td></tr><tr><td class="">Receita alvo p/ lucro R$ 60 mil</td><td class=" num">R$ 358.178</td><td class="">Dentro do base</td><td class="">Para lucro mensal de R$ 60 mil, a receita precisa chegar ao patamar calculado.</td><td class="">Custo fixo + lucro alvo / margem operacional</td></tr><tr><td class="">Validação necessária</td><td class="">Validar dados antes de assinar</td><td class="">Recomendado</td><td class="">Sem DRE real das unidades, lucro e payback permanecem premissas.</td><td class="">DRE real de unidades existentes</td></tr></tbody></table></div>
+        <div class="table-scroll">
+          <table class="sheet-table">
+            <thead><tr><th>Indicador</th><th>Valor</th><th>Sinal</th><th>Interpretação</th><th>Fórmula-base</th></tr></thead>
+            <tbody id="exec-reading-body"></tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -1347,7 +1472,7 @@
   <div class="chart-card wide projection-card">
     <div class="card-header">
       <span class="card-title">Projeção mensal completa e compacta</span>
-      <span class="card-badge">Todas as colunas · Sem rolagem lateral</span>
+      <span class="card-badge">Dados da aba Projecao_60m</span>
     </div>
     <div class="sheet-subtitle">Todos os cenários no mesmo quadro</div>
     <div class="projection-fit-wrap">
@@ -1356,14 +1481,14 @@
           <tr>
             <th class="fit-meta">Mês</th>
             <th class="fit-meta">Fator</th>
-            <th class="fit-cons">Rec. Cons.</th>
-            <th class="fit-cons">Lucro Cons.</th>
-            <th class="fit-cons">Acum. Cons.</th>
-            <th class="fit-cons">PB Cons.</th>
-            <th class="fit-base">Rec. Base</th>
-            <th class="fit-base">Lucro Base</th>
-            <th class="fit-base">Acum. Base</th>
-            <th class="fit-base">PB Base</th>
+            <th class="fit-cons">Rec. Pess.</th>
+            <th class="fit-cons">Lucro Pess.</th>
+            <th class="fit-cons">Acum. Pess.</th>
+            <th class="fit-cons">PB Pess.</th>
+            <th class="fit-base">Rec. Mod.</th>
+            <th class="fit-base">Lucro Mod.</th>
+            <th class="fit-base">Acum. Mod.</th>
+            <th class="fit-base">PB Mod.</th>
             <th class="fit-otim">Rec. Otim.</th>
             <th class="fit-otim">Lucro Otim.</th>
             <th class="fit-otim">Acum. Otim.</th>
@@ -1371,939 +1496,37 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-      <td class="fit-month">1</td>
-      <td class="fit-factor">120%</td>
-      <td class="fit-cons num">R$ 348k</td>
-      <td class="fit-cons num pos">R$ 55,1k</td>
-      <td class="fit-cons num neg">−R$ 1,94M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 480k</td>
-      <td class="fit-base num pos">R$ 114k</td>
-      <td class="fit-base num neg">−R$ 1,89M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 630k</td>
-      <td class="fit-otim num pos">R$ 179k</td>
-      <td class="fit-otim num neg">−R$ 1,82M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">2</td>
-      <td class="fit-factor">120%</td>
-      <td class="fit-cons num">R$ 348k</td>
-      <td class="fit-cons num pos">R$ 55,1k</td>
-      <td class="fit-cons num neg">−R$ 1,89M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 480k</td>
-      <td class="fit-base num pos">R$ 114k</td>
-      <td class="fit-base num neg">−R$ 1,77M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 630k</td>
-      <td class="fit-otim num pos">R$ 179k</td>
-      <td class="fit-otim num neg">−R$ 1,64M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">3</td>
-      <td class="fit-factor">96%</td>
-      <td class="fit-cons num">R$ 278k</td>
-      <td class="fit-cons num pos">R$ 21,5k</td>
-      <td class="fit-cons num neg">−R$ 1,87M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 384k</td>
-      <td class="fit-base num pos">R$ 68,6k</td>
-      <td class="fit-base num neg">−R$ 1,70M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 504k</td>
-      <td class="fit-otim num pos">R$ 120k</td>
-      <td class="fit-otim num neg">−R$ 1,52M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">4</td>
-      <td class="fit-factor">86%</td>
-      <td class="fit-cons num">R$ 249k</td>
-      <td class="fit-cons num pos">R$ 7,5k</td>
-      <td class="fit-cons num neg">−R$ 1,86M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 344k</td>
-      <td class="fit-base num pos">R$ 49,7k</td>
-      <td class="fit-base num neg">−R$ 1,65M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 452k</td>
-      <td class="fit-otim num pos">R$ 96,0k</td>
-      <td class="fit-otim num neg">−R$ 1,43M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">5</td>
-      <td class="fit-factor">81%</td>
-      <td class="fit-cons num">R$ 235k</td>
-      <td class="fit-cons num pos">R$ 457</td>
-      <td class="fit-cons num neg">−R$ 1,86M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 324k</td>
-      <td class="fit-base num pos">R$ 40,3k</td>
-      <td class="fit-base num neg">−R$ 1,61M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 425k</td>
-      <td class="fit-otim num pos">R$ 83,9k</td>
-      <td class="fit-otim num neg">−R$ 1,34M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">6</td>
-      <td class="fit-factor">69%</td>
-      <td class="fit-cons num">R$ 200k</td>
-      <td class="fit-cons num neg">−R$ 16,4k</td>
-      <td class="fit-cons num neg">−R$ 1,88M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 276k</td>
-      <td class="fit-base num pos">R$ 17,5k</td>
-      <td class="fit-base num neg">−R$ 1,60M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 362k</td>
-      <td class="fit-otim num pos">R$ 54,7k</td>
-      <td class="fit-otim num neg">−R$ 1,29M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">7</td>
-      <td class="fit-factor">65%</td>
-      <td class="fit-cons num">R$ 188k</td>
-      <td class="fit-cons num neg">−R$ 22,0k</td>
-      <td class="fit-cons num neg">−R$ 1,90M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 260k</td>
-      <td class="fit-base num pos">R$ 10,0k</td>
-      <td class="fit-base num neg">−R$ 1,59M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 341k</td>
-      <td class="fit-otim num pos">R$ 45,0k</td>
-      <td class="fit-otim num neg">−R$ 1,24M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">8</td>
-      <td class="fit-factor">65%</td>
-      <td class="fit-cons num">R$ 188k</td>
-      <td class="fit-cons num neg">−R$ 22,0k</td>
-      <td class="fit-cons num neg">−R$ 1,92M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 260k</td>
-      <td class="fit-base num pos">R$ 10,0k</td>
-      <td class="fit-base num neg">−R$ 1,58M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 341k</td>
-      <td class="fit-otim num pos">R$ 45,0k</td>
-      <td class="fit-otim num neg">−R$ 1,20M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">9</td>
-      <td class="fit-factor">61%</td>
-      <td class="fit-cons num">R$ 177k</td>
-      <td class="fit-cons num neg">−R$ 27,6k</td>
-      <td class="fit-cons num neg">−R$ 1,95M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 244k</td>
-      <td class="fit-base num pos">R$ 2,4k</td>
-      <td class="fit-base num neg">−R$ 1,57M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 320k</td>
-      <td class="fit-otim num pos">R$ 35,3k</td>
-      <td class="fit-otim num neg">−R$ 1,16M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">10</td>
-      <td class="fit-factor">58%</td>
-      <td class="fit-cons num">R$ 168k</td>
-      <td class="fit-cons num neg">−R$ 31,8k</td>
-      <td class="fit-cons num neg">−R$ 1,98M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 232k</td>
-      <td class="fit-base num neg">−R$ 3,3k</td>
-      <td class="fit-base num neg">−R$ 1,58M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 304k</td>
-      <td class="fit-otim num pos">R$ 28,0k</td>
-      <td class="fit-otim num neg">−R$ 1,13M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">11</td>
-      <td class="fit-factor">67%</td>
-      <td class="fit-cons num">R$ 194k</td>
-      <td class="fit-cons num neg">−R$ 19,2k</td>
-      <td class="fit-cons num neg">−R$ 2,00M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 268k</td>
-      <td class="fit-base num pos">R$ 13,8k</td>
-      <td class="fit-base num neg">−R$ 1,56M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 352k</td>
-      <td class="fit-otim num pos">R$ 49,9k</td>
-      <td class="fit-otim num neg">−R$ 1,08M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">12</td>
-      <td class="fit-factor">81%</td>
-      <td class="fit-cons num">R$ 235k</td>
-      <td class="fit-cons num pos">R$ 457</td>
-      <td class="fit-cons num neg">−R$ 2,00M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 324k</td>
-      <td class="fit-base num pos">R$ 40,3k</td>
-      <td class="fit-base num neg">−R$ 1,52M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 425k</td>
-      <td class="fit-otim num pos">R$ 83,9k</td>
-      <td class="fit-otim num neg">−R$ 1,00M</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">13</td>
-      <td class="fit-factor">63%</td>
-      <td class="fit-cons num">R$ 183k</td>
-      <td class="fit-cons num neg">−R$ 24,8k</td>
-      <td class="fit-cons num neg">−R$ 2,02M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 252k</td>
-      <td class="fit-base num pos">R$ 6,2k</td>
-      <td class="fit-base num neg">−R$ 1,52M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 331k</td>
-      <td class="fit-otim num pos">R$ 40,1k</td>
-      <td class="fit-otim num neg">−R$ 960k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">14</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,05M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 1,52M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num neg">−R$ 928k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">15</td>
-      <td class="fit-factor">69%</td>
-      <td class="fit-cons num">R$ 200k</td>
-      <td class="fit-cons num neg">−R$ 16,4k</td>
-      <td class="fit-cons num neg">−R$ 2,07M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 276k</td>
-      <td class="fit-base num pos">R$ 17,5k</td>
-      <td class="fit-base num neg">−R$ 1,50M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 362k</td>
-      <td class="fit-otim num pos">R$ 54,7k</td>
-      <td class="fit-otim num neg">−R$ 873k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">16</td>
-      <td class="fit-factor">75%</td>
-      <td class="fit-cons num">R$ 218k</td>
-      <td class="fit-cons num neg">−R$ 7,9k</td>
-      <td class="fit-cons num neg">−R$ 2,08M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 300k</td>
-      <td class="fit-base num pos">R$ 28,9k</td>
-      <td class="fit-base num neg">−R$ 1,47M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 394k</td>
-      <td class="fit-otim num pos">R$ 69,3k</td>
-      <td class="fit-otim num neg">−R$ 804k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">17</td>
-      <td class="fit-factor">79%</td>
-      <td class="fit-cons num">R$ 229k</td>
-      <td class="fit-cons num neg">−R$ 2,3k</td>
-      <td class="fit-cons num neg">−R$ 2,08M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 316k</td>
-      <td class="fit-base num pos">R$ 36,5k</td>
-      <td class="fit-base num neg">−R$ 1,43M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 415k</td>
-      <td class="fit-otim num pos">R$ 79,0k</td>
-      <td class="fit-otim num neg">−R$ 725k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">18</td>
-      <td class="fit-factor">62%</td>
-      <td class="fit-cons num">R$ 180k</td>
-      <td class="fit-cons num neg">−R$ 26,2k</td>
-      <td class="fit-cons num neg">−R$ 2,11M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 248k</td>
-      <td class="fit-base num pos">R$ 4,3k</td>
-      <td class="fit-base num neg">−R$ 1,43M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 326k</td>
-      <td class="fit-otim num pos">R$ 37,7k</td>
-      <td class="fit-otim num neg">−R$ 687k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">19</td>
-      <td class="fit-factor">58%</td>
-      <td class="fit-cons num">R$ 168k</td>
-      <td class="fit-cons num neg">−R$ 31,8k</td>
-      <td class="fit-cons num neg">−R$ 2,14M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 232k</td>
-      <td class="fit-base num neg">−R$ 3,3k</td>
-      <td class="fit-base num neg">−R$ 1,43M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 304k</td>
-      <td class="fit-otim num pos">R$ 28,0k</td>
-      <td class="fit-otim num neg">−R$ 659k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">20</td>
-      <td class="fit-factor">56%</td>
-      <td class="fit-cons num">R$ 162k</td>
-      <td class="fit-cons num neg">−R$ 34,6k</td>
-      <td class="fit-cons num neg">−R$ 2,17M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 224k</td>
-      <td class="fit-base num neg">−R$ 7,0k</td>
-      <td class="fit-base num neg">−R$ 1,44M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 294k</td>
-      <td class="fit-otim num pos">R$ 23,1k</td>
-      <td class="fit-otim num neg">−R$ 636k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">21</td>
-      <td class="fit-factor">54%</td>
-      <td class="fit-cons num">R$ 157k</td>
-      <td class="fit-cons num neg">−R$ 37,4k</td>
-      <td class="fit-cons num neg">−R$ 2,21M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 216k</td>
-      <td class="fit-base num neg">−R$ 10,8k</td>
-      <td class="fit-base num neg">−R$ 1,45M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 284k</td>
-      <td class="fit-otim num pos">R$ 18,3k</td>
-      <td class="fit-otim num neg">−R$ 617k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">22</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,24M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 1,45M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num neg">−R$ 585k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">23</td>
-      <td class="fit-factor">73%</td>
-      <td class="fit-cons num">R$ 212k</td>
-      <td class="fit-cons num neg">−R$ 10,7k</td>
-      <td class="fit-cons num neg">−R$ 2,25M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 292k</td>
-      <td class="fit-base num pos">R$ 25,1k</td>
-      <td class="fit-base num neg">−R$ 1,42M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 383k</td>
-      <td class="fit-otim num pos">R$ 64,4k</td>
-      <td class="fit-otim num neg">−R$ 520k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">24</td>
-      <td class="fit-factor">87%</td>
-      <td class="fit-cons num">R$ 252k</td>
-      <td class="fit-cons num pos">R$ 8,9k</td>
-      <td class="fit-cons num neg">−R$ 2,24M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 348k</td>
-      <td class="fit-base num pos">R$ 51,6k</td>
-      <td class="fit-base num neg">−R$ 1,37M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 457k</td>
-      <td class="fit-otim num pos">R$ 98,5k</td>
-      <td class="fit-otim num neg">−R$ 422k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">25</td>
-      <td class="fit-factor">63%</td>
-      <td class="fit-cons num">R$ 183k</td>
-      <td class="fit-cons num neg">−R$ 24,8k</td>
-      <td class="fit-cons num neg">−R$ 2,26M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 252k</td>
-      <td class="fit-base num pos">R$ 6,2k</td>
-      <td class="fit-base num neg">−R$ 1,37M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 331k</td>
-      <td class="fit-otim num pos">R$ 40,1k</td>
-      <td class="fit-otim num neg">−R$ 382k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">26</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,29M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 1,37M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num neg">−R$ 349k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">27</td>
-      <td class="fit-factor">69%</td>
-      <td class="fit-cons num">R$ 200k</td>
-      <td class="fit-cons num neg">−R$ 16,4k</td>
-      <td class="fit-cons num neg">−R$ 2,31M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 276k</td>
-      <td class="fit-base num pos">R$ 17,5k</td>
-      <td class="fit-base num neg">−R$ 1,35M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 362k</td>
-      <td class="fit-otim num pos">R$ 54,7k</td>
-      <td class="fit-otim num neg">−R$ 294k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">28</td>
-      <td class="fit-factor">75%</td>
-      <td class="fit-cons num">R$ 218k</td>
-      <td class="fit-cons num neg">−R$ 7,9k</td>
-      <td class="fit-cons num neg">−R$ 2,32M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 300k</td>
-      <td class="fit-base num pos">R$ 28,9k</td>
-      <td class="fit-base num neg">−R$ 1,32M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 394k</td>
-      <td class="fit-otim num pos">R$ 69,3k</td>
-      <td class="fit-otim num neg">−R$ 225k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">29</td>
-      <td class="fit-factor">79%</td>
-      <td class="fit-cons num">R$ 229k</td>
-      <td class="fit-cons num neg">−R$ 2,3k</td>
-      <td class="fit-cons num neg">−R$ 2,32M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 316k</td>
-      <td class="fit-base num pos">R$ 36,5k</td>
-      <td class="fit-base num neg">−R$ 1,28M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 415k</td>
-      <td class="fit-otim num pos">R$ 79,0k</td>
-      <td class="fit-otim num neg">−R$ 146k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">30</td>
-      <td class="fit-factor">62%</td>
-      <td class="fit-cons num">R$ 180k</td>
-      <td class="fit-cons num neg">−R$ 26,2k</td>
-      <td class="fit-cons num neg">−R$ 2,35M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 248k</td>
-      <td class="fit-base num pos">R$ 4,3k</td>
-      <td class="fit-base num neg">−R$ 1,28M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 326k</td>
-      <td class="fit-otim num pos">R$ 37,7k</td>
-      <td class="fit-otim num neg">−R$ 108k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">31</td>
-      <td class="fit-factor">58%</td>
-      <td class="fit-cons num">R$ 168k</td>
-      <td class="fit-cons num neg">−R$ 31,8k</td>
-      <td class="fit-cons num neg">−R$ 2,38M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 232k</td>
-      <td class="fit-base num neg">−R$ 3,3k</td>
-      <td class="fit-base num neg">−R$ 1,28M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 304k</td>
-      <td class="fit-otim num pos">R$ 28,0k</td>
-      <td class="fit-otim num neg">−R$ 80,0k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">32</td>
-      <td class="fit-factor">56%</td>
-      <td class="fit-cons num">R$ 162k</td>
-      <td class="fit-cons num neg">−R$ 34,6k</td>
-      <td class="fit-cons num neg">−R$ 2,41M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 224k</td>
-      <td class="fit-base num neg">−R$ 7,0k</td>
-      <td class="fit-base num neg">−R$ 1,29M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 294k</td>
-      <td class="fit-otim num pos">R$ 23,1k</td>
-      <td class="fit-otim num neg">−R$ 56,9k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">33</td>
-      <td class="fit-factor">54%</td>
-      <td class="fit-cons num">R$ 157k</td>
-      <td class="fit-cons num neg">−R$ 37,4k</td>
-      <td class="fit-cons num neg">−R$ 2,45M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 216k</td>
-      <td class="fit-base num neg">−R$ 10,8k</td>
-      <td class="fit-base num neg">−R$ 1,30M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 284k</td>
-      <td class="fit-otim num pos">R$ 18,3k</td>
-      <td class="fit-otim num neg">−R$ 38,6k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">34</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,48M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 1,30M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num neg">−R$ 5,8k</td>
-      <td class="fit-otim fit-pb">Sem PB</td>
-    </tr><tr>
-      <td class="fit-month">35</td>
-      <td class="fit-factor">73%</td>
-      <td class="fit-cons num">R$ 212k</td>
-      <td class="fit-cons num neg">−R$ 10,7k</td>
-      <td class="fit-cons num neg">−R$ 2,49M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 292k</td>
-      <td class="fit-base num pos">R$ 25,1k</td>
-      <td class="fit-base num neg">−R$ 1,27M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 383k</td>
-      <td class="fit-otim num pos">R$ 64,4k</td>
-      <td class="fit-otim num pos">R$ 58,7k</td>
-      <td class="fit-otim fit-pb">PB 35</td>
-    </tr><tr>
-      <td class="fit-month">36</td>
-      <td class="fit-factor">87%</td>
-      <td class="fit-cons num">R$ 252k</td>
-      <td class="fit-cons num pos">R$ 8,9k</td>
-      <td class="fit-cons num neg">−R$ 2,48M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 348k</td>
-      <td class="fit-base num pos">R$ 51,6k</td>
-      <td class="fit-base num neg">−R$ 1,22M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 457k</td>
-      <td class="fit-otim num pos">R$ 98,5k</td>
-      <td class="fit-otim num pos">R$ 157k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">37</td>
-      <td class="fit-factor">63%</td>
-      <td class="fit-cons num">R$ 183k</td>
-      <td class="fit-cons num neg">−R$ 24,8k</td>
-      <td class="fit-cons num neg">−R$ 2,51M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 252k</td>
-      <td class="fit-base num pos">R$ 6,2k</td>
-      <td class="fit-base num neg">−R$ 1,22M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 331k</td>
-      <td class="fit-otim num pos">R$ 40,1k</td>
-      <td class="fit-otim num pos">R$ 197k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">38</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,53M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 1,22M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num pos">R$ 230k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">39</td>
-      <td class="fit-factor">69%</td>
-      <td class="fit-cons num">R$ 200k</td>
-      <td class="fit-cons num neg">−R$ 16,4k</td>
-      <td class="fit-cons num neg">−R$ 2,55M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 276k</td>
-      <td class="fit-base num pos">R$ 17,5k</td>
-      <td class="fit-base num neg">−R$ 1,20M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 362k</td>
-      <td class="fit-otim num pos">R$ 54,7k</td>
-      <td class="fit-otim num pos">R$ 285k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">40</td>
-      <td class="fit-factor">75%</td>
-      <td class="fit-cons num">R$ 218k</td>
-      <td class="fit-cons num neg">−R$ 7,9k</td>
-      <td class="fit-cons num neg">−R$ 2,56M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 300k</td>
-      <td class="fit-base num pos">R$ 28,9k</td>
-      <td class="fit-base num neg">−R$ 1,17M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 394k</td>
-      <td class="fit-otim num pos">R$ 69,3k</td>
-      <td class="fit-otim num pos">R$ 354k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">41</td>
-      <td class="fit-factor">79%</td>
-      <td class="fit-cons num">R$ 229k</td>
-      <td class="fit-cons num neg">−R$ 2,3k</td>
-      <td class="fit-cons num neg">−R$ 2,56M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 316k</td>
-      <td class="fit-base num pos">R$ 36,5k</td>
-      <td class="fit-base num neg">−R$ 1,13M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 415k</td>
-      <td class="fit-otim num pos">R$ 79,0k</td>
-      <td class="fit-otim num pos">R$ 433k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">42</td>
-      <td class="fit-factor">62%</td>
-      <td class="fit-cons num">R$ 180k</td>
-      <td class="fit-cons num neg">−R$ 26,2k</td>
-      <td class="fit-cons num neg">−R$ 2,59M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 248k</td>
-      <td class="fit-base num pos">R$ 4,3k</td>
-      <td class="fit-base num neg">−R$ 1,13M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 326k</td>
-      <td class="fit-otim num pos">R$ 37,7k</td>
-      <td class="fit-otim num pos">R$ 471k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">43</td>
-      <td class="fit-factor">58%</td>
-      <td class="fit-cons num">R$ 168k</td>
-      <td class="fit-cons num neg">−R$ 31,8k</td>
-      <td class="fit-cons num neg">−R$ 2,62M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 232k</td>
-      <td class="fit-base num neg">−R$ 3,3k</td>
-      <td class="fit-base num neg">−R$ 1,13M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 304k</td>
-      <td class="fit-otim num pos">R$ 28,0k</td>
-      <td class="fit-otim num pos">R$ 499k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">44</td>
-      <td class="fit-factor">56%</td>
-      <td class="fit-cons num">R$ 162k</td>
-      <td class="fit-cons num neg">−R$ 34,6k</td>
-      <td class="fit-cons num neg">−R$ 2,65M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 224k</td>
-      <td class="fit-base num neg">−R$ 7,0k</td>
-      <td class="fit-base num neg">−R$ 1,14M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 294k</td>
-      <td class="fit-otim num pos">R$ 23,1k</td>
-      <td class="fit-otim num pos">R$ 522k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">45</td>
-      <td class="fit-factor">54%</td>
-      <td class="fit-cons num">R$ 157k</td>
-      <td class="fit-cons num neg">−R$ 37,4k</td>
-      <td class="fit-cons num neg">−R$ 2,69M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 216k</td>
-      <td class="fit-base num neg">−R$ 10,8k</td>
-      <td class="fit-base num neg">−R$ 1,15M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 284k</td>
-      <td class="fit-otim num pos">R$ 18,3k</td>
-      <td class="fit-otim num pos">R$ 540k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">46</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,72M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 1,15M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num pos">R$ 573k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">47</td>
-      <td class="fit-factor">73%</td>
-      <td class="fit-cons num">R$ 212k</td>
-      <td class="fit-cons num neg">−R$ 10,7k</td>
-      <td class="fit-cons num neg">−R$ 2,73M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 292k</td>
-      <td class="fit-base num pos">R$ 25,1k</td>
-      <td class="fit-base num neg">−R$ 1,12M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 383k</td>
-      <td class="fit-otim num pos">R$ 64,4k</td>
-      <td class="fit-otim num pos">R$ 638k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">48</td>
-      <td class="fit-factor">87%</td>
-      <td class="fit-cons num">R$ 252k</td>
-      <td class="fit-cons num pos">R$ 8,9k</td>
-      <td class="fit-cons num neg">−R$ 2,72M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 348k</td>
-      <td class="fit-base num pos">R$ 51,6k</td>
-      <td class="fit-base num neg">−R$ 1,07M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 457k</td>
-      <td class="fit-otim num pos">R$ 98,5k</td>
-      <td class="fit-otim num pos">R$ 736k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">49</td>
-      <td class="fit-factor">63%</td>
-      <td class="fit-cons num">R$ 183k</td>
-      <td class="fit-cons num neg">−R$ 24,8k</td>
-      <td class="fit-cons num neg">−R$ 2,75M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 252k</td>
-      <td class="fit-base num pos">R$ 6,2k</td>
-      <td class="fit-base num neg">−R$ 1,07M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 331k</td>
-      <td class="fit-otim num pos">R$ 40,1k</td>
-      <td class="fit-otim num pos">R$ 776k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">50</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,78M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 1,07M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num pos">R$ 809k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">51</td>
-      <td class="fit-factor">69%</td>
-      <td class="fit-cons num">R$ 200k</td>
-      <td class="fit-cons num neg">−R$ 16,4k</td>
-      <td class="fit-cons num neg">−R$ 2,79M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 276k</td>
-      <td class="fit-base num pos">R$ 17,5k</td>
-      <td class="fit-base num neg">−R$ 1,05M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 362k</td>
-      <td class="fit-otim num pos">R$ 54,7k</td>
-      <td class="fit-otim num pos">R$ 864k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">52</td>
-      <td class="fit-factor">75%</td>
-      <td class="fit-cons num">R$ 218k</td>
-      <td class="fit-cons num neg">−R$ 7,9k</td>
-      <td class="fit-cons num neg">−R$ 2,80M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 300k</td>
-      <td class="fit-base num pos">R$ 28,9k</td>
-      <td class="fit-base num neg">−R$ 1,02M</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 394k</td>
-      <td class="fit-otim num pos">R$ 69,3k</td>
-      <td class="fit-otim num pos">R$ 933k</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">53</td>
-      <td class="fit-factor">79%</td>
-      <td class="fit-cons num">R$ 229k</td>
-      <td class="fit-cons num neg">−R$ 2,3k</td>
-      <td class="fit-cons num neg">−R$ 2,80M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 316k</td>
-      <td class="fit-base num pos">R$ 36,5k</td>
-      <td class="fit-base num neg">−R$ 983k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 415k</td>
-      <td class="fit-otim num pos">R$ 79,0k</td>
-      <td class="fit-otim num pos">R$ 1,01M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">54</td>
-      <td class="fit-factor">62%</td>
-      <td class="fit-cons num">R$ 180k</td>
-      <td class="fit-cons num neg">−R$ 26,2k</td>
-      <td class="fit-cons num neg">−R$ 2,83M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 248k</td>
-      <td class="fit-base num pos">R$ 4,3k</td>
-      <td class="fit-base num neg">−R$ 979k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 326k</td>
-      <td class="fit-otim num pos">R$ 37,7k</td>
-      <td class="fit-otim num pos">R$ 1,05M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">55</td>
-      <td class="fit-factor">58%</td>
-      <td class="fit-cons num">R$ 168k</td>
-      <td class="fit-cons num neg">−R$ 31,8k</td>
-      <td class="fit-cons num neg">−R$ 2,86M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 232k</td>
-      <td class="fit-base num neg">−R$ 3,3k</td>
-      <td class="fit-base num neg">−R$ 982k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 304k</td>
-      <td class="fit-otim num pos">R$ 28,0k</td>
-      <td class="fit-otim num pos">R$ 1,08M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">56</td>
-      <td class="fit-factor">56%</td>
-      <td class="fit-cons num">R$ 162k</td>
-      <td class="fit-cons num neg">−R$ 34,6k</td>
-      <td class="fit-cons num neg">−R$ 2,89M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 224k</td>
-      <td class="fit-base num neg">−R$ 7,0k</td>
-      <td class="fit-base num neg">−R$ 989k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 294k</td>
-      <td class="fit-otim num pos">R$ 23,1k</td>
-      <td class="fit-otim num pos">R$ 1,10M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">57</td>
-      <td class="fit-factor">54%</td>
-      <td class="fit-cons num">R$ 157k</td>
-      <td class="fit-cons num neg">−R$ 37,4k</td>
-      <td class="fit-cons num neg">−R$ 2,93M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 216k</td>
-      <td class="fit-base num neg">−R$ 10,8k</td>
-      <td class="fit-base num neg">−R$ 1.000k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 284k</td>
-      <td class="fit-otim num pos">R$ 18,3k</td>
-      <td class="fit-otim num pos">R$ 1,12M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">58</td>
-      <td class="fit-factor">60%</td>
-      <td class="fit-cons num">R$ 174k</td>
-      <td class="fit-cons num neg">−R$ 29,0k</td>
-      <td class="fit-cons num neg">−R$ 2,96M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 240k</td>
-      <td class="fit-base num pos">R$ 520</td>
-      <td class="fit-base num neg">−R$ 999k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 315k</td>
-      <td class="fit-otim num pos">R$ 32,8k</td>
-      <td class="fit-otim num pos">R$ 1,15M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">59</td>
-      <td class="fit-factor">73%</td>
-      <td class="fit-cons num">R$ 212k</td>
-      <td class="fit-cons num neg">−R$ 10,7k</td>
-      <td class="fit-cons num neg">−R$ 2,97M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 292k</td>
-      <td class="fit-base num pos">R$ 25,1k</td>
-      <td class="fit-base num neg">−R$ 974k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 383k</td>
-      <td class="fit-otim num pos">R$ 64,4k</td>
-      <td class="fit-otim num pos">R$ 1,22M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr><tr>
-      <td class="fit-month">60</td>
-      <td class="fit-factor">87%</td>
-      <td class="fit-cons num">R$ 252k</td>
-      <td class="fit-cons num pos">R$ 8,9k</td>
-      <td class="fit-cons num neg">−R$ 2,96M</td>
-      <td class="fit-cons fit-pb">Sem PB</td>
-      <td class="fit-base num">R$ 348k</td>
-      <td class="fit-base num pos">R$ 51,6k</td>
-      <td class="fit-base num neg">−R$ 923k</td>
-      <td class="fit-base fit-pb">Sem PB</td>
-      <td class="fit-otim num">R$ 457k</td>
-      <td class="fit-otim num pos">R$ 98,5k</td>
-      <td class="fit-otim num pos">R$ 1,31M</td>
-      <td class="fit-otim fit-pb">OK</td>
-    </tr>
+          <tr><td class="fit-month">1</td><td class="fit-factor">120%</td><td class="fit-cons num">R$ 359k</td><td class="fit-cons num pos">R$ 59k</td><td class="fit-cons num neg">−R$ 1,94M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 476k</td><td class="fit-base num pos">R$ 104k</td><td class="fit-base num neg">−R$ 1,90M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 619k</td><td class="fit-otim num pos">R$ 141k</td><td class="fit-otim num neg">−R$ 1,86M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">2</td><td class="fit-factor">120%</td><td class="fit-cons num">R$ 359k</td><td class="fit-cons num pos">R$ 59k</td><td class="fit-cons num neg">−R$ 1,88M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 476k</td><td class="fit-base num pos">R$ 104k</td><td class="fit-base num neg">−R$ 1,79M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 619k</td><td class="fit-otim num pos">R$ 141k</td><td class="fit-otim num neg">−R$ 1,72M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">3</td><td class="fit-factor">96%</td><td class="fit-cons num">R$ 287k</td><td class="fit-cons num pos">R$ 31k</td><td class="fit-cons num neg">−R$ 1,85M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 381k</td><td class="fit-base num pos">R$ 67k</td><td class="fit-base num neg">−R$ 1,72M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 495k</td><td class="fit-otim num pos">R$ 93k</td><td class="fit-otim num neg">−R$ 1,62M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">4</td><td class="fit-factor">86%</td><td class="fit-cons num">R$ 257k</td><td class="fit-cons num pos">R$ 19k</td><td class="fit-cons num neg">−R$ 1,83M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 341k</td><td class="fit-base num pos">R$ 52k</td><td class="fit-base num neg">−R$ 1,67M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 444k</td><td class="fit-otim num pos">R$ 73k</td><td class="fit-otim num neg">−R$ 1,55M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">5</td><td class="fit-factor">81%</td><td class="fit-cons num">R$ 242k</td><td class="fit-cons num pos">R$ 13k</td><td class="fit-cons num neg">−R$ 1,82M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 321k</td><td class="fit-base num pos">R$ 44k</td><td class="fit-base num neg">−R$ 1,63M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 418k</td><td class="fit-otim num pos">R$ 63k</td><td class="fit-otim num neg">−R$ 1,49M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">6</td><td class="fit-factor">69%</td><td class="fit-cons num">R$ 206k</td><td class="fit-cons num neg">−R$ 580</td><td class="fit-cons num neg">−R$ 1,82M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 274k</td><td class="fit-base num pos">R$ 26k</td><td class="fit-base num neg">−R$ 1,60M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 356k</td><td class="fit-otim num pos">R$ 39k</td><td class="fit-otim num neg">−R$ 1,45M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">7</td><td class="fit-factor">65%</td><td class="fit-cons num">R$ 194k</td><td class="fit-cons num neg">−R$ 5k</td><td class="fit-cons num neg">−R$ 1,83M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 258k</td><td class="fit-base num pos">R$ 19k</td><td class="fit-base num neg">−R$ 1,58M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 335k</td><td class="fit-otim num pos">R$ 31k</td><td class="fit-otim num neg">−R$ 1,42M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">8</td><td class="fit-factor">65%</td><td class="fit-cons num">R$ 194k</td><td class="fit-cons num neg">−R$ 5k</td><td class="fit-cons num neg">−R$ 1,83M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 258k</td><td class="fit-base num pos">R$ 19k</td><td class="fit-base num neg">−R$ 1,56M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 335k</td><td class="fit-otim num pos">R$ 31k</td><td class="fit-otim num neg">−R$ 1,39M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">9</td><td class="fit-factor">61%</td><td class="fit-cons num">R$ 182k</td><td class="fit-cons num neg">−R$ 10k</td><td class="fit-cons num neg">−R$ 1,84M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 242k</td><td class="fit-base num pos">R$ 13k</td><td class="fit-base num neg">−R$ 1,55M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 315k</td><td class="fit-otim num pos">R$ 23k</td><td class="fit-otim num neg">−R$ 1,37M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">10</td><td class="fit-factor">58%</td><td class="fit-cons num">R$ 173k</td><td class="fit-cons num neg">−R$ 13k</td><td class="fit-cons num neg">−R$ 1,85M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 230k</td><td class="fit-base num pos">R$ 9k</td><td class="fit-base num neg">−R$ 1,54M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 299k</td><td class="fit-otim num pos">R$ 17k</td><td class="fit-otim num neg">−R$ 1,35M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">11</td><td class="fit-factor">67%</td><td class="fit-cons num">R$ 200k</td><td class="fit-cons num neg">−R$ 3k</td><td class="fit-cons num neg">−R$ 1,86M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 266k</td><td class="fit-base num pos">R$ 23k</td><td class="fit-base num neg">−R$ 1,52M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 346k</td><td class="fit-otim num pos">R$ 35k</td><td class="fit-otim num neg">−R$ 1,31M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">12</td><td class="fit-factor">81%</td><td class="fit-cons num">R$ 242k</td><td class="fit-cons num pos">R$ 13k</td><td class="fit-cons num neg">−R$ 1,84M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 321k</td><td class="fit-base num pos">R$ 44k</td><td class="fit-base num neg">−R$ 1,47M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 418k</td><td class="fit-otim num pos">R$ 63k</td><td class="fit-otim num neg">−R$ 1,25M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">13</td><td class="fit-factor">63%</td><td class="fit-cons num">R$ 188k</td><td class="fit-cons num neg">−R$ 8k</td><td class="fit-cons num neg">−R$ 1,85M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 250k</td><td class="fit-base num pos">R$ 16k</td><td class="fit-base num neg">−R$ 1,46M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 325k</td><td class="fit-otim num pos">R$ 27k</td><td class="fit-otim num neg">−R$ 1,22M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">14</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 1,86M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 1,45M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num neg">−R$ 1,20M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">15</td><td class="fit-factor">69%</td><td class="fit-cons num">R$ 206k</td><td class="fit-cons num neg">−R$ 580</td><td class="fit-cons num neg">−R$ 1,86M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 274k</td><td class="fit-base num pos">R$ 26k</td><td class="fit-base num neg">−R$ 1,42M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 356k</td><td class="fit-otim num pos">R$ 39k</td><td class="fit-otim num neg">−R$ 1,16M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">16</td><td class="fit-factor">75%</td><td class="fit-cons num">R$ 224k</td><td class="fit-cons num pos">R$ 6k</td><td class="fit-cons num neg">−R$ 1,86M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 298k</td><td class="fit-base num pos">R$ 35k</td><td class="fit-base num neg">−R$ 1,39M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 387k</td><td class="fit-otim num pos">R$ 51k</td><td class="fit-otim num neg">−R$ 1,11M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">17</td><td class="fit-factor">79%</td><td class="fit-cons num">R$ 236k</td><td class="fit-cons num pos">R$ 11k</td><td class="fit-cons num neg">−R$ 1,84M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 313k</td><td class="fit-base num pos">R$ 41k</td><td class="fit-base num neg">−R$ 1,34M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 408k</td><td class="fit-otim num pos">R$ 59k</td><td class="fit-otim num neg">−R$ 1,05M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">18</td><td class="fit-factor">62%</td><td class="fit-cons num">R$ 185k</td><td class="fit-cons num neg">−R$ 9k</td><td class="fit-cons num neg">−R$ 1,85M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 246k</td><td class="fit-base num pos">R$ 15k</td><td class="fit-base num neg">−R$ 1,33M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 320k</td><td class="fit-otim num pos">R$ 25k</td><td class="fit-otim num neg">−R$ 1,03M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">19</td><td class="fit-factor">58%</td><td class="fit-cons num">R$ 173k</td><td class="fit-cons num neg">−R$ 13k</td><td class="fit-cons num neg">−R$ 1,87M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 230k</td><td class="fit-base num pos">R$ 9k</td><td class="fit-base num neg">−R$ 1,32M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 299k</td><td class="fit-otim num pos">R$ 17k</td><td class="fit-otim num neg">−R$ 1,01M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">20</td><td class="fit-factor">56%</td><td class="fit-cons num">R$ 167k</td><td class="fit-cons num neg">−R$ 16k</td><td class="fit-cons num neg">−R$ 1,88M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 222k</td><td class="fit-base num pos">R$ 6k</td><td class="fit-base num neg">−R$ 1,32M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 289k</td><td class="fit-otim num pos">R$ 13k</td><td class="fit-otim num neg">−R$ 1,00M</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">21</td><td class="fit-factor">54%</td><td class="fit-cons num">R$ 161k</td><td class="fit-cons num neg">−R$ 18k</td><td class="fit-cons num neg">−R$ 1,90M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 214k</td><td class="fit-base num pos">R$ 3k</td><td class="fit-base num neg">−R$ 1,31M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 279k</td><td class="fit-otim num pos">R$ 9k</td><td class="fit-otim num neg">−R$ 991k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">22</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 1,91M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 1,30M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num neg">−R$ 970k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">23</td><td class="fit-factor">73%</td><td class="fit-cons num">R$ 218k</td><td class="fit-cons num pos">R$ 4k</td><td class="fit-cons num neg">−R$ 1,91M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 290k</td><td class="fit-base num pos">R$ 32k</td><td class="fit-base num neg">−R$ 1,27M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 377k</td><td class="fit-otim num pos">R$ 47k</td><td class="fit-otim num neg">−R$ 924k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">24</td><td class="fit-factor">87%</td><td class="fit-cons num">R$ 260k</td><td class="fit-cons num pos">R$ 20k</td><td class="fit-cons num neg">−R$ 1,89M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 345k</td><td class="fit-base num pos">R$ 53k</td><td class="fit-base num neg">−R$ 1,22M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 449k</td><td class="fit-otim num pos">R$ 75k</td><td class="fit-otim num neg">−R$ 849k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">25</td><td class="fit-factor">63%</td><td class="fit-cons num">R$ 188k</td><td class="fit-cons num neg">−R$ 8k</td><td class="fit-cons num neg">−R$ 1,89M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 250k</td><td class="fit-base num pos">R$ 16k</td><td class="fit-base num neg">−R$ 1,20M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 325k</td><td class="fit-otim num pos">R$ 27k</td><td class="fit-otim num neg">−R$ 822k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">26</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 1,91M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 1,19M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num neg">−R$ 801k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">27</td><td class="fit-factor">69%</td><td class="fit-cons num">R$ 206k</td><td class="fit-cons num neg">−R$ 580</td><td class="fit-cons num neg">−R$ 1,91M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 274k</td><td class="fit-base num pos">R$ 26k</td><td class="fit-base num neg">−R$ 1,16M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 356k</td><td class="fit-otim num pos">R$ 39k</td><td class="fit-otim num neg">−R$ 762k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">28</td><td class="fit-factor">75%</td><td class="fit-cons num">R$ 224k</td><td class="fit-cons num pos">R$ 6k</td><td class="fit-cons num neg">−R$ 1,90M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 298k</td><td class="fit-base num pos">R$ 35k</td><td class="fit-base num neg">−R$ 1,13M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 387k</td><td class="fit-otim num pos">R$ 51k</td><td class="fit-otim num neg">−R$ 711k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">29</td><td class="fit-factor">79%</td><td class="fit-cons num">R$ 236k</td><td class="fit-cons num pos">R$ 11k</td><td class="fit-cons num neg">−R$ 1,89M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 313k</td><td class="fit-base num pos">R$ 41k</td><td class="fit-base num neg">−R$ 1,09M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 408k</td><td class="fit-otim num pos">R$ 59k</td><td class="fit-otim num neg">−R$ 652k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">30</td><td class="fit-factor">62%</td><td class="fit-cons num">R$ 185k</td><td class="fit-cons num neg">−R$ 9k</td><td class="fit-cons num neg">−R$ 1,90M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 246k</td><td class="fit-base num pos">R$ 15k</td><td class="fit-base num neg">−R$ 1,07M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 320k</td><td class="fit-otim num pos">R$ 25k</td><td class="fit-otim num neg">−R$ 627k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">31</td><td class="fit-factor">58%</td><td class="fit-cons num">R$ 173k</td><td class="fit-cons num neg">−R$ 13k</td><td class="fit-cons num neg">−R$ 1,91M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 230k</td><td class="fit-base num pos">R$ 9k</td><td class="fit-base num neg">−R$ 1,06M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 299k</td><td class="fit-otim num pos">R$ 17k</td><td class="fit-otim num neg">−R$ 611k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">32</td><td class="fit-factor">56%</td><td class="fit-cons num">R$ 167k</td><td class="fit-cons num neg">−R$ 16k</td><td class="fit-cons num neg">−R$ 1,93M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 222k</td><td class="fit-base num pos">R$ 6k</td><td class="fit-base num neg">−R$ 1,06M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 289k</td><td class="fit-otim num pos">R$ 13k</td><td class="fit-otim num neg">−R$ 598k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">33</td><td class="fit-factor">54%</td><td class="fit-cons num">R$ 161k</td><td class="fit-cons num neg">−R$ 18k</td><td class="fit-cons num neg">−R$ 1,94M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 214k</td><td class="fit-base num pos">R$ 3k</td><td class="fit-base num neg">−R$ 1,05M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 279k</td><td class="fit-otim num pos">R$ 9k</td><td class="fit-otim num neg">−R$ 589k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">34</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 1,96M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 1,04M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num neg">−R$ 568k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">35</td><td class="fit-factor">73%</td><td class="fit-cons num">R$ 218k</td><td class="fit-cons num pos">R$ 4k</td><td class="fit-cons num neg">−R$ 1,95M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 290k</td><td class="fit-base num pos">R$ 32k</td><td class="fit-base num neg">−R$ 1,01M</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 377k</td><td class="fit-otim num pos">R$ 47k</td><td class="fit-otim num neg">−R$ 521k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">36</td><td class="fit-factor">87%</td><td class="fit-cons num">R$ 260k</td><td class="fit-cons num pos">R$ 20k</td><td class="fit-cons num neg">−R$ 1,93M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 345k</td><td class="fit-base num pos">R$ 53k</td><td class="fit-base num neg">−R$ 958k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 449k</td><td class="fit-otim num pos">R$ 75k</td><td class="fit-otim num neg">−R$ 446k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">37</td><td class="fit-factor">63%</td><td class="fit-cons num">R$ 188k</td><td class="fit-cons num neg">−R$ 8k</td><td class="fit-cons num neg">−R$ 1,94M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 250k</td><td class="fit-base num pos">R$ 16k</td><td class="fit-base num neg">−R$ 941k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 325k</td><td class="fit-otim num pos">R$ 27k</td><td class="fit-otim num neg">−R$ 420k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">38</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 1,95M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 930k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num neg">−R$ 399k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">39</td><td class="fit-factor">69%</td><td class="fit-cons num">R$ 206k</td><td class="fit-cons num neg">−R$ 580</td><td class="fit-cons num neg">−R$ 1,95M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 274k</td><td class="fit-base num pos">R$ 26k</td><td class="fit-base num neg">−R$ 904k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 356k</td><td class="fit-otim num pos">R$ 39k</td><td class="fit-otim num neg">−R$ 360k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">40</td><td class="fit-factor">75%</td><td class="fit-cons num">R$ 224k</td><td class="fit-cons num pos">R$ 6k</td><td class="fit-cons num neg">−R$ 1,94M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 298k</td><td class="fit-base num pos">R$ 35k</td><td class="fit-base num neg">−R$ 869k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 387k</td><td class="fit-otim num pos">R$ 51k</td><td class="fit-otim num neg">−R$ 309k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">41</td><td class="fit-factor">79%</td><td class="fit-cons num">R$ 236k</td><td class="fit-cons num pos">R$ 11k</td><td class="fit-cons num neg">−R$ 1,93M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 313k</td><td class="fit-base num pos">R$ 41k</td><td class="fit-base num neg">−R$ 828k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 408k</td><td class="fit-otim num pos">R$ 59k</td><td class="fit-otim num neg">−R$ 250k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">42</td><td class="fit-factor">62%</td><td class="fit-cons num">R$ 185k</td><td class="fit-cons num neg">−R$ 9k</td><td class="fit-cons num neg">−R$ 1,94M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 246k</td><td class="fit-base num pos">R$ 15k</td><td class="fit-base num neg">−R$ 813k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 320k</td><td class="fit-otim num pos">R$ 25k</td><td class="fit-otim num neg">−R$ 225k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">43</td><td class="fit-factor">58%</td><td class="fit-cons num">R$ 173k</td><td class="fit-cons num neg">−R$ 13k</td><td class="fit-cons num neg">−R$ 1,96M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 230k</td><td class="fit-base num pos">R$ 9k</td><td class="fit-base num neg">−R$ 804k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 299k</td><td class="fit-otim num pos">R$ 17k</td><td class="fit-otim num neg">−R$ 208k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">44</td><td class="fit-factor">56%</td><td class="fit-cons num">R$ 167k</td><td class="fit-cons num neg">−R$ 16k</td><td class="fit-cons num neg">−R$ 1,97M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 222k</td><td class="fit-base num pos">R$ 6k</td><td class="fit-base num neg">−R$ 799k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 289k</td><td class="fit-otim num pos">R$ 13k</td><td class="fit-otim num neg">−R$ 196k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">45</td><td class="fit-factor">54%</td><td class="fit-cons num">R$ 161k</td><td class="fit-cons num neg">−R$ 18k</td><td class="fit-cons num neg">−R$ 1,99M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 214k</td><td class="fit-base num pos">R$ 3k</td><td class="fit-base num neg">−R$ 796k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 279k</td><td class="fit-otim num pos">R$ 9k</td><td class="fit-otim num neg">−R$ 187k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">46</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 2,00M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 785k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num neg">−R$ 166k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">47</td><td class="fit-factor">73%</td><td class="fit-cons num">R$ 218k</td><td class="fit-cons num pos">R$ 4k</td><td class="fit-cons num neg">−R$ 2,00M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 290k</td><td class="fit-base num pos">R$ 32k</td><td class="fit-base num neg">−R$ 753k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 377k</td><td class="fit-otim num pos">R$ 47k</td><td class="fit-otim num neg">−R$ 119k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">48</td><td class="fit-factor">87%</td><td class="fit-cons num">R$ 260k</td><td class="fit-cons num pos">R$ 20k</td><td class="fit-cons num neg">−R$ 1,98M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 345k</td><td class="fit-base num pos">R$ 53k</td><td class="fit-base num neg">−R$ 699k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 449k</td><td class="fit-otim num pos">R$ 75k</td><td class="fit-otim num neg">−R$ 44k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">49</td><td class="fit-factor">63%</td><td class="fit-cons num">R$ 188k</td><td class="fit-cons num neg">−R$ 8k</td><td class="fit-cons num neg">−R$ 1,98M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 250k</td><td class="fit-base num pos">R$ 16k</td><td class="fit-base num neg">−R$ 683k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 325k</td><td class="fit-otim num pos">R$ 27k</td><td class="fit-otim num neg">−R$ 17k</td><td class="fit-otim fit-pb">Sem PB</td></tr><tr><td class="fit-month">50</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 1,99M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 671k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num pos">R$ 3k</td><td class="fit-otim fit-pb">50</td></tr><tr><td class="fit-month">51</td><td class="fit-factor">69%</td><td class="fit-cons num">R$ 206k</td><td class="fit-cons num neg">−R$ 580</td><td class="fit-cons num neg">−R$ 1,99M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 274k</td><td class="fit-base num pos">R$ 26k</td><td class="fit-base num neg">−R$ 645k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 356k</td><td class="fit-otim num pos">R$ 39k</td><td class="fit-otim num pos">R$ 42k</td><td class="fit-otim fit-pb">51</td></tr><tr><td class="fit-month">52</td><td class="fit-factor">75%</td><td class="fit-cons num">R$ 224k</td><td class="fit-cons num pos">R$ 6k</td><td class="fit-cons num neg">−R$ 1,99M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 298k</td><td class="fit-base num pos">R$ 35k</td><td class="fit-base num neg">−R$ 611k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 387k</td><td class="fit-otim num pos">R$ 51k</td><td class="fit-otim num pos">R$ 93k</td><td class="fit-otim fit-pb">52</td></tr><tr><td class="fit-month">53</td><td class="fit-factor">79%</td><td class="fit-cons num">R$ 236k</td><td class="fit-cons num pos">R$ 11k</td><td class="fit-cons num neg">−R$ 1,98M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 313k</td><td class="fit-base num pos">R$ 41k</td><td class="fit-base num neg">−R$ 569k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 408k</td><td class="fit-otim num pos">R$ 59k</td><td class="fit-otim num pos">R$ 152k</td><td class="fit-otim fit-pb">53</td></tr><tr><td class="fit-month">54</td><td class="fit-factor">62%</td><td class="fit-cons num">R$ 185k</td><td class="fit-cons num neg">−R$ 9k</td><td class="fit-cons num neg">−R$ 1,99M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 246k</td><td class="fit-base num pos">R$ 15k</td><td class="fit-base num neg">−R$ 555k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 320k</td><td class="fit-otim num pos">R$ 25k</td><td class="fit-otim num pos">R$ 177k</td><td class="fit-otim fit-pb">54</td></tr><tr><td class="fit-month">55</td><td class="fit-factor">58%</td><td class="fit-cons num">R$ 173k</td><td class="fit-cons num neg">−R$ 13k</td><td class="fit-cons num neg">−R$ 2,00M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 230k</td><td class="fit-base num pos">R$ 9k</td><td class="fit-base num neg">−R$ 546k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 299k</td><td class="fit-otim num pos">R$ 17k</td><td class="fit-otim num pos">R$ 194k</td><td class="fit-otim fit-pb">55</td></tr><tr><td class="fit-month">56</td><td class="fit-factor">56%</td><td class="fit-cons num">R$ 167k</td><td class="fit-cons num neg">−R$ 16k</td><td class="fit-cons num neg">−R$ 2,02M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 222k</td><td class="fit-base num pos">R$ 6k</td><td class="fit-base num neg">−R$ 540k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 289k</td><td class="fit-otim num pos">R$ 13k</td><td class="fit-otim num pos">R$ 207k</td><td class="fit-otim fit-pb">56</td></tr><tr><td class="fit-month">57</td><td class="fit-factor">54%</td><td class="fit-cons num">R$ 161k</td><td class="fit-cons num neg">−R$ 18k</td><td class="fit-cons num neg">−R$ 2,03M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 214k</td><td class="fit-base num pos">R$ 3k</td><td class="fit-base num neg">−R$ 538k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 279k</td><td class="fit-otim num pos">R$ 9k</td><td class="fit-otim num pos">R$ 215k</td><td class="fit-otim fit-pb">57</td></tr><tr><td class="fit-month">58</td><td class="fit-factor">60%</td><td class="fit-cons num">R$ 179k</td><td class="fit-cons num neg">−R$ 11k</td><td class="fit-cons num neg">−R$ 2,04M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 238k</td><td class="fit-base num pos">R$ 12k</td><td class="fit-base num neg">−R$ 526k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 310k</td><td class="fit-otim num pos">R$ 21k</td><td class="fit-otim num pos">R$ 236k</td><td class="fit-otim fit-pb">58</td></tr><tr><td class="fit-month">59</td><td class="fit-factor">73%</td><td class="fit-cons num">R$ 218k</td><td class="fit-cons num pos">R$ 4k</td><td class="fit-cons num neg">−R$ 2,04M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 290k</td><td class="fit-base num pos">R$ 32k</td><td class="fit-base num neg">−R$ 494k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 377k</td><td class="fit-otim num pos">R$ 47k</td><td class="fit-otim num pos">R$ 283k</td><td class="fit-otim fit-pb">59</td></tr><tr><td class="fit-month">60</td><td class="fit-factor">87%</td><td class="fit-cons num">R$ 260k</td><td class="fit-cons num pos">R$ 20k</td><td class="fit-cons num neg">−R$ 2,02M</td><td class="fit-cons fit-pb">Sem PB</td><td class="fit-base num">R$ 345k</td><td class="fit-base num pos">R$ 53k</td><td class="fit-base num neg">−R$ 441k</td><td class="fit-base fit-pb">Sem PB</td><td class="fit-otim num">R$ 449k</td><td class="fit-otim num pos">R$ 75k</td><td class="fit-otim num pos">R$ 358k</td><td class="fit-otim fit-pb">60</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-
-
-
   <div class="section-divider" id="sec-premissas">PREMISSAS</div>
   <div class="chart-card wide">
     <div class="card-header">
       <span class="card-title">Premissas do investimento</span>
-      <span class="card-badge">Parâmetros do modelo</span>
+      <span class="card-badge">Parâmetros vindos da aba Premissas</span>
     </div>
-    <div class="table-scroll"><table class="sheet-table"><thead><tr><th>Categoria</th><th>Premissa</th><th>Valor</th><th>Unidade</th><th>Origem</th><th>Observação</th></tr></thead><tbody><tr><td class="">Investimento</td><td class="">Investimento total considerado</td><td class=" num">R$ 2.000.000</td><td class="">R$</td><td class="">Informado pelo usuário</td><td class="">Base do payback. Altere aqui para recalcular tudo.</td></tr><tr><td class="">Investimento</td><td class="">Investimento estimado COF — Modelo Pub</td><td class=" num">R$ 1.325.237</td><td class="">R$</td><td class="">COF / Anexo III</td><td class="">Estimativa da COF; não inclui luvas/locação/taxas de ocupação.</td></tr><tr><td class="">Investimento</td><td class="">Taxa inicial de franquia — seção remunerações</td><td class=" num">R$ 249.000</td><td class="">R$</td><td class="">COF / Item X</td><td class="">Há divergência com a tabela de investimento.</td></tr><tr><td class="">Investimento</td><td class="">Taxa de franquia na tabela de investimento</td><td class=" num">R$ 190.000</td><td class="">R$</td><td class="">COF / Anexo III</td><td class="">Ponto a esclarecer com a franqueadora.</td></tr><tr><td class="">Investimento</td><td class="">Capital de giro inicial</td><td class=" num">R$ 80.000</td><td class="">R$</td><td class="">COF / Anexo III</td><td class="">Valor estimado na COF.</td></tr><tr><td class="">Investimento</td><td class="">Marketing de inauguração mínimo</td><td class=" num">R$ 35.000</td><td class="">R$</td><td class="">COF / Item X</td><td class="">Obrigação mínima indicada na COF.</td></tr><tr><td class="">Variável</td><td class="">Royalties</td><td class=" num">7,0%</td><td class="">% faturamento bruto</td><td class="">COF / Item X</td><td class="">Cobrança mensal sobre faturamento bruto.</td></tr><tr><td class="">Variável</td><td class="">Marketing local</td><td class=" num">1,7%</td><td class="">% faturamento bruto</td><td class="">COF / Item X</td><td class="">Mínimo mensal indicado.</td></tr><tr><td class="">Variável</td><td class="">Fundo de marketing institucional</td><td class=" num">2,0%</td><td class="">% faturamento bruto</td><td class="">COF / Item X</td><td class="">Contribuição mensal.</td></tr><tr><td class="">Variável</td><td class="">CMV estimado</td><td class=" num">30,0%</td><td class="">% faturamento bruto</td><td class="">Premissa ajustável</td><td class="">Validar com DRE real/ficha técnica.</td></tr><tr><td class="">Variável</td><td class="">Tributos estimados CONSERVADOR</td><td class=" num">9,0%</td><td class="">% faturamento bruto</td><td class="">Premissa ajustável</td><td class="">Validar regime tributário com contador.</td></tr><tr><td class="">Variável</td><td class="">Tributos estimados BASE</td><td class=" num">10,0%</td><td class="">% faturamento bruto</td><td class="">Premissa ajustável</td><td class="">Validar regime tributário com contador.</td></tr><tr><td class="">Variável</td><td class="">Tributos estimados OTIMISTA</td><td class=" num">11,0%</td><td class="">% faturamento bruto</td><td class="">Premissa ajustável</td><td class="">Validar regime tributário com contador.</td></tr><tr><td class="">Variável</td><td class="">Taxas de cartão/PIX/intermediação</td><td class=" num">2,0%</td><td class="">% faturamento bruto</td><td class="">Premissa ajustável</td><td class="">Validar taxas contratadas.</td></tr><tr><td class="">Receita</td><td class="">Receita mensal — Conservador</td><td class=" num">R$ 290.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Cenário de sensibilidade.</td></tr><tr><td class="">Receita</td><td class="">Receita mensal — Base</td><td class=" num">R$ 400.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Cenário de sensibilidade.</td></tr><tr><td class="">Receita</td><td class="">Receita mensal — Otimista</td><td class=" num">R$ 525.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Cenário de sensibilidade.</td></tr><tr><td class="">Fixo</td><td class="">Folha + encargos</td><td class=" num">R$ 50.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Validar quadro completo, adicionais noturnos e encargos.</td></tr><tr><td class="">Fixo</td><td class="">Aluguel + condomínio + IPTU</td><td class=" num">R$ 16.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Validar ponto em Ponta Grossa.</td></tr><tr><td class="">Fixo</td><td class="">Atrações / shows / eventos</td><td class=" num">R$ 25.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Validar cachês e grade mínima.</td></tr><tr><td class="">Fixo</td><td class="">Segurança</td><td class=" num">R$ 6.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Validar exigências e escala.</td></tr><tr><td class="">Fixo</td><td class="">Energia / água / internet</td><td class=" num">R$ 3.500</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Validar consumo real da operação.</td></tr><tr><td class="">Fixo</td><td class="">Limpeza / manutenção</td><td class=" num">R$ 4.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Validar rotina e contratos.</td></tr><tr><td class="">Fixo</td><td class="">Software / sistemas</td><td class=" num">R$ 1.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">COF exige sistemas homologados; valor estimado.</td></tr><tr><td class="">Fixo</td><td class="">Contabilidade / jurídico / administrativo</td><td class=" num">R$ 2.500</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Estimativa.</td></tr><tr><td class="">Fixo</td><td class="">Seguro</td><td class=" num">R$ 0</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">COF exige seguro; valor estimado.</td></tr><tr><td class="">Fixo</td><td class="">Outros custos fixos</td><td class=" num">R$ 5.000</td><td class="">R$/mês</td><td class="">Premissa ajustável</td><td class="">Reserva operacional.</td></tr><tr><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class="">Total</td><td class="">Total de despesas fixas mensais</td><td class=" num">R$ 113.000</td><td class="">R$/mês</td><td class="">Fórmula</td><td class="">Soma automática das despesas fixas editáveis.</td></tr><tr><td class="">Curva</td><td class="">Aplicar curva de maturação na projeção?</td><td class="">Sim</td><td class=""></td><td class="">Premissa ajustável</td><td class="">Se &#x27;Sim&#x27;, usa 60% meses 1-3, 75% meses 4-6, 90% meses 7-12 e 100% depois. Se &#x27;Não&#x27;, começa com a receita cheia do cenário.</td></tr></tbody></table></div>
+    <div class="table-scroll"><table class="sheet-table"><thead><tr><th>Categoria</th><th>Premissa</th><th>Valor</th><th>Unidade</th><th>Origem</th><th>Observação</th></tr></thead><tbody><tr><td class="">Investimento</td><td class="">Investimento total considerado</td><td class="num">R$ 2.000.000,00</td><td class="">R$</td><td class="">Informado pelo usuário</td><td class="">Base do payback. Altere aqui para recalcular tudo.</td></tr><tr><td class="">Investimento</td><td class="">Investimento estimado COF — Modelo Pub</td><td class="num">R$ 1.325.237,00</td><td class="">R$</td><td class="">COF / Anexo III</td><td class="">Estimativa da COF; não inclui luvas/locação/taxas de ocupação.</td></tr><tr><td class="">Investimento</td><td class="">Taxa inicial de franquia — seção remunerações</td><td class="num">R$ 249.000,00</td><td class="">R$</td><td class="">COF / Item X</td><td class="">Há divergência com a tabela de investimento.</td></tr><tr><td class="">Investimento</td><td class="">Taxa de franquia na tabela de investimento</td><td class="num">R$ 190.000,00</td><td class="">R$</td><td class="">COF / Anexo III</td><td class="">Ponto a esclarecer com a franqueadora.</td></tr><tr><td class="">Investimento</td><td class="">Capital de giro inicial</td><td class="num">R$ 80.000,00</td><td class="">R$</td><td class="">COF / Anexo III</td><td class="">Valor estimado na COF.</td></tr><tr><td class="">Investimento</td><td class="">Marketing de inauguração mínimo</td><td class="num">R$ 35.000,00</td><td class="">R$</td><td class="">COF / Item X</td><td class="">Obrigação mínima indicada na COF.</td></tr><tr><td class="">Receita</td><td class="">Receita mensal — Conservador</td><td class="num">R$ 299.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Alinhado ao DRE da franquia para bater a validação. Editável.</td></tr><tr><td class="">Receita</td><td class="">Receita mensal — Base</td><td class="num">R$ 396.800,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Alinhado ao DRE da franquia para bater a validação. Editável.</td></tr><tr><td class="">Receita</td><td class="">Receita mensal — Otimista</td><td class="num">R$ 516.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Alinhado ao DRE da franquia para bater a validação. Editável.</td></tr><tr><td class="">Curva</td><td class="">Aplicar curva de maturação na projeção?</td><td class="">Sim</td><td class=""></td><td class="">Premissa ajustável</td><td class="">Se Sim, usa sazonalidade/maturação mensal na projeção de 60 meses.</td></tr><tr><td class="">Franquia/Receita</td><td class="">Royalties</td><td class="num">7,00%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Aplicado uma única vez sobre a receita bruta.</td></tr><tr><td class="">Franquia/Receita</td><td class="">Fundo cooperado de propaganda</td><td class="num">1,00%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Substitui o fundo institucional genérico anterior.</td></tr><tr><td class="">Cartão/PIX</td><td class="">Taxa de débito</td><td class="num">1,09%</td><td class="">% vendas débito</td><td class="">DRE Franquia</td><td class="">Premissa do DRE de franquia.</td></tr><tr><td class="">Cartão/PIX</td><td class="">Taxa de crédito</td><td class="num">2,79%</td><td class="">% vendas crédito</td><td class="">DRE Franquia</td><td class="">Premissa do DRE de franquia.</td></tr><tr><td class="">Cartão/PIX</td><td class="">Taxa de PIX</td><td class="num">1,09%</td><td class="">% vendas PIX</td><td class="">DRE Franquia</td><td class="">Premissa mantida para ajuste futuro.</td></tr><tr><td class="">Cartão/PIX</td><td class="">% vendas débito</td><td class="num">45,00%</td><td class="">% mix vendas</td><td class="">DRE Franquia</td><td class="">Usada no cálculo da taxa efetiva conforme DRE.</td></tr><tr><td class="">Cartão/PIX</td><td class="">% vendas crédito</td><td class="num">45,00%</td><td class="">% mix vendas</td><td class="">DRE Franquia</td><td class="">Usada no cálculo da taxa efetiva conforme DRE.</td></tr><tr><td class="">Cartão/PIX</td><td class="">% vendas PIX</td><td class="num">4,00%</td><td class="">% mix vendas</td><td class="">DRE Franquia</td><td class="">Mantida como premissa, mas o DRE original da franquia não somava PIX na taxa efetiva.</td></tr><tr><td class="">Cartão/PIX</td><td class="">Taxa efetiva cartão conforme DRE</td><td class="num">1,75%</td><td class="">% receita bruta</td><td class="">Fórmula</td><td class="">Débito + crédito; não soma PIX, replicando a fórmula do DRE da franquia.</td></tr><tr><td class="">Sistema</td><td class="">Sistema de gestão</td><td class="num">R$ 1.300,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Custo fixo mensal.</td></tr><tr><td class="">Taxa serviço</td><td class="">% pessoas que pagam taxa de serviço</td><td class="num">75,00%</td><td class="">% pessoas</td><td class="">DRE Franquia</td><td class="">Base para cálculo automático da taxa de serviço.</td></tr><tr><td class="">Taxa serviço</td><td class="">% taxa de serviço</td><td class="num">10,00%</td><td class="">% consumo</td><td class="">DRE Franquia</td><td class="">Base para cálculo automático da taxa de serviço.</td></tr><tr><td class="">Taxa serviço</td><td class="">% desconto legal da taxa de serviço</td><td class="num">33,00%</td><td class="">% desconto</td><td class="">DRE Franquia</td><td class="">Taxa líquida = receita × pessoas × taxa × (1 - desconto).</td></tr><tr><td class="">CMV</td><td class="">CMV estimado</td><td class="num">30,00%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Aplicado sobre receita bruta.</td></tr><tr><td class="">Impostos</td><td class="">C.S.L.L. (provisão)</td><td class="num">1,08%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Tributo detalhado.</td></tr><tr><td class="">Impostos</td><td class="">I.R.P.J. (provisão)</td><td class="num">1,20%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Tributo detalhado.</td></tr><tr><td class="">Impostos</td><td class="">I.C.M.S. (mensal)</td><td class="num">0,37%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Tributo detalhado.</td></tr><tr><td class="">Impostos</td><td class="">Cofins (mensal)</td><td class="num">2,07%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Tributo detalhado.</td></tr><tr><td class="">Impostos</td><td class="">P.I.S. (mensal)</td><td class="num">0,45%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Tributo detalhado.</td></tr><tr><td class="">Impostos</td><td class="">Outros impostos/adicional</td><td class="num">0,36%</td><td class="">% receita bruta</td><td class="">DRE Franquia</td><td class="">Linha adicional do DRE de franquia.</td></tr><tr><td class="">Impostos</td><td class="">Tributos totais</td><td class="num">5,53%</td><td class="">% receita bruta</td><td class="">Fórmula</td><td class="">Soma automática dos tributos detalhados.</td></tr><tr><td class="">Folha</td><td class="">Salário líquido/base de salários</td><td class="num">R$ 5.220,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Base comum aos 3 cenários; a receita é a única variável de cenário.</td></tr><tr><td class="">Folha</td><td class="">Pró-labore</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Folha</td><td class="">Estagiário</td><td class="num">R$ 1.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Benefícios</td><td class="">Alimentação funcionários</td><td class="num">R$ 1.800,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Benefícios</td><td class="">Outros benefícios</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Intermitente</td><td class="">Gerais</td><td class="num">R$ 8.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Intermitente</td><td class="">Segurança</td><td class="num">R$ 6.720,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Baseada no cenário conservador/moderado da franquia.</td></tr><tr><td class="">Intermitente</td><td class="">Policiais</td><td class="num">R$ 2.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Encargos</td><td class="">FGTS funcionários</td><td class="num">8,00%</td><td class="">% salário + taxa serviço</td><td class="">DRE Franquia</td><td class="">Calculado automaticamente no DRE.</td></tr><tr><td class="">Encargos</td><td class="">I.N.S.S. patronal</td><td class="num">28,80%</td><td class="">% salário + taxa serviço</td><td class="">DRE Franquia</td><td class="">Calculado automaticamente no DRE.</td></tr><tr><td class="">Provisões</td><td class="">Provisão de férias</td><td class="num">2,78%</td><td class="">% salário + taxa serviço</td><td class="">DRE Franquia</td><td class="">No DRE, férias = 1/3 de 1/12 + a provisão de 13º, para replicar o cálculo original.</td></tr><tr><td class="">Provisões</td><td class="">Provisão de 13º</td><td class="num">8,33%</td><td class="">% salário + taxa serviço</td><td class="">DRE Franquia</td><td class="">Calculado automaticamente no DRE; também compõe a linha de férias conforme DRE original.</td></tr><tr><td class="">Comercial/MKT</td><td class="">Marketing local</td><td class="num">R$ 3.500,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Comercial/MKT</td><td class="">Patrocínio de marketing</td><td class="num">R$ 7.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Comercial/MKT</td><td class="">Agência de promoção</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Comercial/MKT</td><td class="">Promoters</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Atrações</td><td class="">Banda</td><td class="num">R$ 7.200,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Atrações</td><td class="">Cantores/DJ</td><td class="num">R$ 8.800,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Ocupação/Utilidades</td><td class="">Aluguel</td><td class="num">R$ 12.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Ocupação/Utilidades</td><td class="">Condomínio</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Ocupação/Utilidades</td><td class="">IPTU</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Ocupação/Utilidades</td><td class="">Luz, água e outros</td><td class="num">R$ 3.500,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Ocupação/Utilidades</td><td class="">Segurança monitorada</td><td class="num">R$ 261,49</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Manutenção</td><td class="">Manutenção geral</td><td class="num">R$ 2.500,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Manutenção</td><td class="">Copos e utensílios</td><td class="num">R$ 1.500,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Manutenção</td><td class="">Materiais de limpeza</td><td class="num">R$ 2.500,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Manutenção</td><td class="">Uniformes e cardápios</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Serviços</td><td class="">Advogados e despesas jurídicas</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Serviços</td><td class="">Contabilidade</td><td class="num">R$ 825,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Serviços</td><td class="">ECAD</td><td class="num">R$ 470,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Serviços</td><td class="">Seguro</td><td class="num">R$ 525,93</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Serviços</td><td class="">TV, internet e telefone</td><td class="num">R$ 400,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Serviços</td><td class="">Taxas e contribuições</td><td class="num">R$ 169,68</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Serviços</td><td class="">Outras despesas</td><td class="num">R$ 500,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Financeiras</td><td class="">Tarifas bancárias gerais</td><td class="num">R$ 150,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa fixa mensal.</td></tr><tr><td class="">Financeiras</td><td class="">Aluguel máquina de cartão</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Financeiras</td><td class="">Juros</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Editável.</td></tr><tr><td class="">Extras</td><td class="">Outras receitas</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Entram como acréscimo no resultado.</td></tr><tr><td class="">Extras</td><td class="">Compra de ativo fixo</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa extra mensal, se houver.</td></tr><tr><td class="">Extras</td><td class="">Pagamento de empréstimo</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa extra mensal, se houver.</td></tr><tr><td class="">Extras</td><td class="">Pagamento processos jurídicos</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa extra mensal, se houver.</td></tr><tr><td class="">Extras</td><td class="">Obras e reformas</td><td class="num">R$ 0,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Despesa extra mensal, se houver.</td></tr><tr><td class="">Controle</td><td class="">Royalties/fundo dentro de custos operacionais?</td><td class="">Sim</td><td class=""></td><td class="">DRE Franquia</td><td class="">Sim = replica o DRE da franquia, onde royalties e fundo aparecem também dentro dos custos operacionais.</td></tr><tr><td class="">Cenário Otimista específico</td><td class="">Salário líquido/base de salários — Otimista</td><td class="num">R$ 7.830,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Premissa específica do cenário otimista no DRE original.</td></tr><tr><td class="">Cenário Otimista específico</td><td class="">Intermitente gerais — Otimista</td><td class="num">R$ 11.200,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Premissa específica do cenário otimista no DRE original.</td></tr><tr><td class="">Cenário Otimista específico</td><td class="">Segurança — Otimista</td><td class="num">R$ 9.600,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Premissa específica do cenário otimista no DRE original.</td></tr><tr><td class="">Cenário Otimista específico</td><td class="">Policiais — Otimista</td><td class="num">R$ 3.000,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Premissa específica do cenário otimista no DRE original.</td></tr><tr><td class="">Cenário Otimista específico</td><td class="">Banda — Otimista</td><td class="num">R$ 10.800,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Premissa específica do cenário otimista no DRE original.</td></tr><tr><td class="">Cenário Otimista específico</td><td class="">Cantores/DJ — Otimista</td><td class="num">R$ 12.800,00</td><td class="">R$/mês</td><td class="">DRE Franquia</td><td class="">Premissa específica do cenário otimista no DRE original.</td></tr></tbody></table></div>
   </div>
 
 </div>
 
-
 <script>
-// ── DADOS DO MODELO ────────────────────────────────────────────────
-const dashboardData = {"summary":{"investimentoTotal":2000000.0,"cofInvestimento":1325237.0,"taxaFranquia":249000.0,"taxaFranquiaTabela":190000.0,"capitalGiro":80000.0,"marketingInauguracao":35000.0,"despesasFixas":113000.0,"pontoEquilibrio":233954.4513457557,"gapBaseEquilibrio":166045.5486542443,"curvaMaturacao":"Sim"},"scenarios":{"cons":{"label":"Conservador","receita":290000.0,"cmv":87000.0,"cmvRate":0.3,"lucroBruto":203000.0,"tributos":26100.0,"tributosRate":0.09,"taxas":5800.0,"taxasRate":0.02,"royalties":20300.000000000004,"royaltiesRate":0.07,"mktLocal":4930.0,"mktLocalRate":0.017,"mktFundo":5800.0,"mktFundoRate":0.02,"margemVariavel":140070.0,"fixos":113000.0,"lucro":27070.0,"margem":0.0933448275862069,"pontoEquilibrio":233954.4513457557,"payback":73.88252678241597,"paybackAnos":6.156877231867997,"paybackProjetado":null,"acum60":-2962892.900000001,"color":"#e05252"},"base":{"label":"Base","receita":400000.0,"cmv":120000.0,"cmvRate":0.3,"lucroBruto":280000.0,"tributos":40000.0,"tributosRate":0.1,"taxas":8000.0,"taxasRate":0.02,"royalties":28000.000000000004,"royaltiesRate":0.07,"mktLocal":6800.000000000001,"mktLocalRate":0.017,"mktFundo":8000.0,"mktFundoRate":0.02,"margemVariavel":189200.0,"fixos":113000.0,"lucro":76200.0,"margem":0.1905,"pontoEquilibrio":233954.4513457557,"payback":26.246719160104988,"paybackAnos":2.1872265966754156,"paybackProjetado":null,"acum60":-922524.0,"color":"#c9a84c"},"otim":{"label":"Otimista","receita":525000.0,"cmv":157500.0,"cmvRate":0.3,"lucroBruto":367500.0,"tributos":57750.0,"tributosRate":0.11,"taxas":10500.0,"taxasRate":0.02,"royalties":36750.0,"royaltiesRate":0.07,"mktLocal":8925.0,"mktLocalRate":0.017,"mktFundo":10500.0,"mktFundoRate":0.02,"margemVariavel":243075.0,"fixos":113000.0,"lucro":130075.0,"margem":0.24776190476190477,"pontoEquilibrio":233954.4513457557,"payback":15.37574476263694,"paybackAnos":1.2813120635530784,"paybackProjetado":35,"acum60":1314904.7499999995,"color":"#52c97a"}},"sensData":[[200000.0,-16400.0,-0.082,null,null,"Prejuízo"],[240000.0,2920.0,0.012166666666666666,684.931506849315,57.077625570776256,"Longo"],[280000.0,22240.0,0.07942857142857143,89.92805755395683,7.494004796163069,"Longo"],[320000.0,41560.0,0.129875,48.12319538017324,4.010266281681104,"Longo"],[360000.0,60880.0,0.1691111111111111,32.8515111695138,2.7376259307928166,"Bom"],[400000.0,80200.0,0.2005,24.93765586034913,2.0781379883624274,"Bom"],[440000.0,99520.0,0.22618181818181818,20.09646302250804,1.67470525187567,"Bom"],[480000.0,118840.0,0.24758333333333332,16.82935038707506,1.4024458655895884,"Bom"],[520000.0,138160.0,0.26569230769230767,14.475969889982629,1.206330824165219,"Bom"],[560000.0,157480.0,0.2812142857142857,12.7000254000508,1.0583354500042332,"Bom"],[600000.0,176800.0,0.2946666666666667,11.312217194570136,0.9426847662141781,"Bom"],[640000.0,196120.0,0.3064375,10.197838058331634,0.8498198381943028,"Bom"],[680000.0,215440.0,0.3168235294117647,9.28332714444857,0.7736105953707142,"Bom"],[720000.0,234760.0,0.32605555555555554,8.519338899301415,0.7099449082751179,"Bom"],[760000.0,254080.0,0.33431578947368423,7.871536523929471,0.6559613769941226,"Bom"],[800000.0,273400.0,0.34175,7.315288953913679,0.60960741282614,"Bom"],[840000.0,292720.0,0.3484761904761905,6.832467887400929,0.5693723239500774,"Bom"],[880000.0,312040.0,0.35459090909090907,6.40943468786053,0.5341195573217109,"Bom"],[920000.0,331360.0,0.36017391304347823,6.035731530661516,0.5029776275551263,"Bom"],[960000.0,350680.0,0.3652916666666667,5.703205201323144,0.47526710011026196,"Bom"],[1000000.0,370000.0,0.37,5.405405405405405,0.45045045045045046,"Bom"]],"fixosData":{"labels":["Folha+encargos","Aluguel+IPTU","Atrações/Shows","Segurança","Energia/Água","Limpeza/Manut.","Software","Contab./Jur./Adm.","Seguro","Outros"],"values":[50000.0,16000.0,25000.0,6000.0,3500.0,4000.0,1000.0,2500.0,0,5000.0]},"projection":{"months":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],"cons":{"receita":[348000.0,348000.0,278400.0,249400.0,234900.00000000003,200099.99999999997,188500.0,188500.0,176900.0,168200.0,194300.0,234900.00000000003,182700.0,174000.0,200099.99999999997,217500.0,229100.0,179800.0,168200.0,162400.00000000003,156600.0,174000.0,211700.0,252300.0,182700.0,174000.0,200099.99999999997,217500.0,229100.0,179800.0,168200.0,162400.00000000003,156600.0,174000.0,211700.0,252300.0,182700.0,174000.0,200099.99999999997,217500.0,229100.0,179800.0,168200.0,162400.00000000003,156600.0,174000.0,211700.0,252300.0,182700.0,174000.0,200099.99999999997,217500.0,229100.0,179800.0,168200.0,162400.00000000003,156600.0,174000.0,211700.0,252300.0],"lucro":[55084.0,55084.0,21467.199999999983,7460.199999999997,456.70000000001164,-16351.700000000012,-21954.5,-21954.5,-27557.300000000003,-31759.40000000001,-19153.100000000006,456.70000000001164,-24755.90000000001,-28958.0,-16351.700000000012,-7947.5,-2344.699999999997,-26156.600000000006,-31759.40000000001,-34560.79999999999,-37362.2,-28958.0,-10748.900000000009,8860.899999999994,-24755.90000000001,-28958.0,-16351.700000000012,-7947.5,-2344.699999999997,-26156.600000000006,-31759.40000000001,-34560.79999999999,-37362.2,-28958.0,-10748.900000000009,8860.899999999994,-24755.90000000001,-28958.0,-16351.700000000012,-7947.5,-2344.699999999997,-26156.600000000006,-31759.40000000001,-34560.79999999999,-37362.2,-28958.0,-10748.900000000009,8860.899999999994,-24755.90000000001,-28958.0,-16351.700000000012,-7947.5,-2344.699999999997,-26156.600000000006,-31759.40000000001,-34560.79999999999,-37362.2,-28958.0,-10748.900000000009,8860.899999999994],"acum":[-1944916.0,-1889832.0,-1868364.8,-1860904.6,-1860447.9000000001,-1876799.6,-1898754.1,-1920708.6,-1948265.9000000001,-1980025.3,-1999178.4000000001,-1998721.7000000002,-2023477.6,-2052435.6,-2068787.3,-2076734.8,-2079079.5,-2105236.1,-2136995.5,-2171556.3,-2208918.5,-2237876.5,-2248625.4,-2239764.5,-2264520.4,-2293478.4,-2309830.1,-2317777.6,-2320122.3000000003,-2346278.9000000004,-2378038.3000000003,-2412599.1,-2449961.3000000003,-2478919.3000000003,-2489668.2,-2480807.3000000003,-2505563.2,-2534521.2,-2550872.9000000004,-2558820.4000000004,-2561165.1000000006,-2587321.7000000007,-2619081.1000000006,-2653641.9000000004,-2691004.1000000006,-2719962.1000000006,-2730711.0000000005,-2721850.1000000006,-2746606.0000000005,-2775564.0000000005,-2791915.7000000007,-2799863.2000000007,-2802207.900000001,-2828364.500000001,-2860123.900000001,-2894684.7000000007,-2932046.900000001,-2961004.900000001,-2971753.8000000007,-2962892.900000001],"paybackProjetado":null,"acum60":-2962892.900000001},"base":{"receita":[480000.0,480000.0,384000.0,344000.0,324000.0,276000.0,260000.0,260000.0,244000.0,231999.99999999997,268000.0,324000.0,252000.0,240000.0,276000.0,300000.0,316000.0,248000.0,231999.99999999997,224000.00000000003,216000.0,240000.0,292000.0,348000.0,252000.0,240000.0,276000.0,300000.0,316000.0,248000.0,231999.99999999997,224000.00000000003,216000.0,240000.0,292000.0,348000.0,252000.0,240000.0,276000.0,300000.0,316000.0,248000.0,231999.99999999997,224000.00000000003,216000.0,240000.0,292000.0,348000.0,252000.0,240000.0,276000.0,300000.0,316000.0,248000.0,231999.99999999997,224000.00000000003,216000.0,240000.0,292000.0,348000.0],"lucro":[114040.0,114040.0,68632.0,49712.0,40252.0,17548.0,9980.0,9980.0,2412.0,-3264.0000000000146,13764.0,40252.0,6196.0,520.0,17548.0,28900.0,36468.0,4304.0,-3264.0000000000146,-7047.999999999985,-10832.0,520.0,25116.0,51604.0,6196.0,520.0,17548.0,28900.0,36468.0,4304.0,-3264.0000000000146,-7047.999999999985,-10832.0,520.0,25116.0,51604.0,6196.0,520.0,17548.0,28900.0,36468.0,4304.0,-3264.0000000000146,-7047.999999999985,-10832.0,520.0,25116.0,51604.0,6196.0,520.0,17548.0,28900.0,36468.0,4304.0,-3264.0000000000146,-7047.999999999985,-10832.0,520.0,25116.0,51604.0],"acum":[-1885960.0,-1771920.0,-1703288.0,-1653576.0,-1613324.0,-1595776.0,-1585796.0,-1575816.0,-1573404.0,-1576668.0,-1562904.0,-1522652.0,-1516456.0,-1515936.0,-1498388.0,-1469488.0,-1433020.0,-1428716.0,-1431980.0,-1439028.0,-1449860.0,-1449340.0,-1424224.0,-1372620.0,-1366424.0,-1365904.0,-1348356.0,-1319456.0,-1282988.0,-1278684.0,-1281948.0,-1288996.0,-1299828.0,-1299308.0,-1274192.0,-1222588.0,-1216392.0,-1215872.0,-1198324.0,-1169424.0,-1132956.0,-1128652.0,-1131916.0,-1138964.0,-1149796.0,-1149276.0,-1124160.0,-1072556.0,-1066360.0,-1065840.0,-1048292.0,-1019392.0,-982924.0,-978620.0,-981884.0,-988932.0,-999764.0,-999244.0,-974128.0,-922524.0],"paybackProjetado":null,"acum60":-922524.0},"otim":{"receita":[630000.0,630000.0,504000.0,451500.0,425250.0,362250.0,341250.0,341250.0,320250.0,304500.0,351750.0,425250.0,330750.0,315000.0,362250.0,393750.0,414750.0,325500.0,304500.0,294000.0,283500.0,315000.0,383250.0,456750.0,330750.0,315000.0,362250.0,393750.0,414750.0,325500.0,304500.0,294000.0,283500.0,315000.0,383250.0,456750.0,330750.0,315000.0,362250.0,393750.0,414750.0,325500.0,304500.0,294000.0,283500.0,315000.0,383250.0,456750.0,330750.0,315000.0,362250.0,393750.0,414750.0,325500.0,304500.0,294000.0,283500.0,315000.0,383250.0,456750.0],"lucro":[178689.99999999994,178689.99999999994,120351.99999999994,96044.49999999997,83890.74999999997,54721.74999999997,44998.74999999997,44998.74999999997,35275.74999999997,27983.49999999997,49860.24999999997,83890.74999999997,40137.24999999997,32844.99999999997,54721.74999999997,69306.24999999997,79029.24999999997,37706.49999999997,27983.49999999997,23121.99999999997,18260.49999999997,32844.99999999997,64444.74999999997,98475.24999999997,40137.24999999997,32844.99999999997,54721.74999999997,69306.24999999997,79029.24999999997,37706.49999999997,27983.49999999997,23121.99999999997,18260.49999999997,32844.99999999997,64444.74999999997,98475.24999999997,40137.24999999997,32844.99999999997,54721.74999999997,69306.24999999997,79029.24999999997,37706.49999999997,27983.49999999997,23121.99999999997,18260.49999999997,32844.99999999997,64444.74999999997,98475.24999999997,40137.24999999997,32844.99999999997,54721.74999999997,69306.24999999997,79029.24999999997,37706.49999999997,27983.49999999997,23121.99999999997,18260.49999999997,32844.99999999997,64444.74999999997,98475.24999999997],"acum":[-1821310.0,-1642620.0,-1522268.0,-1426223.5,-1342332.75,-1287611.0,-1242612.25,-1197613.5,-1162337.75,-1134354.25,-1084494.0,-1000603.25,-960466.0,-927621.0,-872899.25,-803593.0,-724563.75,-686857.25,-658873.75,-635751.75,-617491.25,-584646.25,-520201.5,-421726.25,-381589.0,-348744.0,-294022.25,-224716.00000000003,-145686.75000000006,-107980.25000000009,-79996.75000000012,-56874.750000000146,-38614.250000000175,-5769.250000000204,58675.49999999977,157150.74999999974,197287.9999999997,230132.99999999968,284854.74999999965,354160.99999999965,433190.24999999965,470896.74999999965,498880.24999999965,522002.24999999965,540262.7499999997,573107.7499999997,637552.4999999997,736027.7499999997,776164.9999999997,809009.9999999997,863731.7499999997,933037.9999999997,1012067.2499999997,1049773.7499999995,1077757.2499999995,1100879.2499999995,1119139.7499999995,1151984.7499999995,1216429.4999999995,1314904.7499999995],"paybackProjetado":35,"acum60":1314904.7499999995}}};
+const dashboardData = {"summary":{"investimentoTotal":2000000.0,"cofInvestimento":1325237.0,"taxaFranquia":249000.0,"taxaFranquiaTabela":190000.0,"capitalGiro":80000.0,"marketingInauguracao":35000.0,"despesasFixas":142375.95226666666,"pontoEquilibrio":280603.1308162579,"gapBaseEquilibrio":116196.86918374209,"curvaMaturacao":"Sim"},"scenarios":{"cons":{"label":"Pessimista","labelUpper":"PESSIMISTA","receita":299000,"royalties":20930.000000000004,"royaltiesRate":0.07,"fundo":2990.0,"fundoRate":0.01,"royaltiesFundo":23920.000000000004,"royaltiesFundoRate":0.08000000000000002,"cartao":5220.54,"cartaoRate":0.01746,"sistema":1300.0,"sistemaRate":0.004347826086956522,"sistemaTaxas":6520.54,"sistemaTaxasRate":0.02180782608695652,"fatLiquido":268559.46,"fatLiquidoRate":0.8981921739130435,"tributos":16534.7,"tributosRate":0.0553,"cmv":89700.0,"cmvRate":0.3,"cmo":51151.29716666666,"cmoRate":0.17107457246376812,"comercial":26500.0,"comercialRate":0.08862876254180602,"operacionais":49222.100000000006,"operacionaisRate":0.16462240802675587,"resultado":35451.36283333335,"resultadoRate":0.11856643088071353,"pontoEquilibrio":280603.1308162579,"payback":56.4153206014266,"paybackAnos":4.70127671678555,"paybackProjetado":null,"acum60":-2019675.6697316654,"color":"#ff4d6d","taxas":6520.54,"taxasRate":0.02180782608695652,"lucro":35451.36283333335,"margem":0.11856643088071353,"fixos":126873.39716666666,"lucroBruto":209300.0},"base":{"label":"Moderado","labelUpper":"MODERADO","receita":396800,"royalties":27776.000000000004,"royaltiesRate":0.07,"fundo":3968.0,"fundoRate":0.01,"royaltiesFundo":31744.000000000004,"royaltiesFundoRate":0.08000000000000002,"cartao":6928.128,"cartaoRate":0.01746,"sistema":1300.0,"sistemaRate":0.003276209677419355,"sistemaTaxas":8228.128,"sistemaTaxasRate":0.020736209677419355,"fatLiquido":356827.872,"fatLiquidoRate":0.8992637903225805,"tributos":21943.039999999997,"tributosRate":0.055299999999999995,"cmv":119040.0,"cmvRate":0.3,"cmo":58829.85226666666,"cmoRate":0.14826071639784946,"comercial":26500.0,"comercialRate":0.06678427419354839,"operacionais":57046.100000000006,"operacionaisRate":0.143765372983871,"resultado":73468.87973333334,"resultadoRate":0.18515342674731183,"pontoEquilibrio":280603.1308162579,"payback":27.222410458132877,"paybackAnos":2.2685342048444066,"paybackProjetado":null,"acum60":-440808.19287466654,"color":"#f5c542","taxas":8228.128,"taxasRate":0.020736209677419355,"lucro":73468.87973333334,"margem":0.18515342674731183,"fixos":142375.95226666666,"lucroBruto":277760.0},"otim":{"label":"Otimista","labelUpper":"OTIMISTA","receita":516000,"royalties":36120.0,"royaltiesRate":0.07,"fundo":5160.0,"fundoRate":0.01,"royaltiesFundo":41280.0,"royaltiesFundoRate":0.08,"cartao":9009.36,"cartaoRate":0.01746,"sistema":1300.0,"sistemaRate":0.0025193798449612403,"sistemaTaxas":10309.36,"sistemaTaxasRate":0.019979379844961242,"fatLiquido":464410.64,"fatLiquidoRate":0.9000206201550388,"tributos":28534.8,"tributosRate":0.0553,"cmv":154800.0,"cmvRate":0.3,"cmo":79346.562,"cmoRate":0.15377240697674419,"comercial":34100.0,"comercialRate":0.06608527131782946,"operacionais":66582.1,"operacionaisRate":0.12903507751937984,"resultado":101047.17800000001,"resultadoRate":0.1958278643410853,"pontoEquilibrio":348408.9912247792,"payback":19.79273483520737,"paybackAnos":1.649394569600614,"paybackProjetado":50,"acum60":358058.64353999984,"color":"#00e0a4","taxas":10309.36,"taxasRate":0.019979379844961242,"lucro":101047.17800000001,"margem":0.1958278643410853,"fixos":180028.662,"lucroBruto":361200.0}},"dreCompareRows":[{"section":"[+] RECEITA"},{"label":"Faturamento Bruto","key":"receita","positive":true,"values":{"cons":299000,"base":396800,"otim":516000},"pcts":{"cons":1,"base":1,"otim":1}},{"label":"Royalties + Fundo (8%)","key":"royaltiesFundo","negative":true,"values":{"cons":23920.000000000004,"base":31744.000000000004,"otim":41280.0},"pcts":{"cons":0.08000000000000002,"base":0.08000000000000002,"otim":0.08}},{"label":"Sistema e Taxas de Cartão","key":"sistemaTaxas","negative":true,"values":{"cons":6520.54,"base":8228.128,"otim":10309.36},"pcts":{"cons":0.02180782608695652,"base":0.020736209677419355,"otim":0.019979379844961242}},{"label":"Faturamento Líquido","key":"fatLiquido","positive":true,"bold":true,"values":{"cons":268559.46,"base":356827.872,"otim":464410.64},"pcts":{"cons":0.8981921739130435,"base":0.8992637903225805,"otim":0.9000206201550388}},{"section":"[-] IMPOSTOS"},{"label":"Impostos Totais","key":"tributos","negative":true,"values":{"cons":16534.7,"base":21943.039999999997,"otim":28534.8},"pcts":{"cons":0.0553,"base":0.055299999999999995,"otim":0.0553}},{"section":"[-] CUSTOS"},{"label":"CMV (Mercadorias)","key":"cmv","negative":true,"values":{"cons":89700.0,"base":119040.0,"otim":154800.0},"pcts":{"cons":0.3,"base":0.3,"otim":0.3}},{"label":"Mão de Obra Total","key":"cmo","negative":true,"values":{"cons":51151.29716666666,"base":58829.85226666666,"otim":79346.562},"pcts":{"cons":0.17107457246376812,"base":0.14826071639784946,"otim":0.15377240697674419}},{"label":"Custos Comerciais e MKT","key":"comercial","negative":true,"values":{"cons":26500.0,"base":26500.0,"otim":34100.0},"pcts":{"cons":0.08862876254180602,"base":0.06678427419354839,"otim":0.06608527131782946}},{"label":"Custos Operacionais","key":"operacionais","negative":true,"values":{"cons":49222.100000000006,"base":57046.100000000006,"otim":66582.1},"pcts":{"cons":0.16462240802675587,"base":0.143765372983871,"otim":0.12903507751937984}},{"section":"[-] RESULTADO"},{"label":"Resultado Líquido Operacional","key":"resultado","positive":true,"bold":true,"result":true,"values":{"cons":35451.36283333335,"base":73468.87973333334,"otim":101047.17800000001},"pcts":{"cons":0.11856643088071353,"base":0.18515342674731183,"otim":0.1958278643410853}}],"dreDetailRows":[{"label":"Receita Bruta","key":"receita","type":"pos","section":false},{"label":"(-) Royalties","key":"royalties","type":"neg"},{"label":"(-) Fundo Cooperado","key":"fundo","type":"neg"},{"label":"= Subtotal Royalties + Fundo","key":"royaltiesFundo","type":"neg","section":true},{"label":"(-) Taxa Cartão Crédito/Débito","key":"cartao","type":"neg"},{"label":"(-) Sistema de Gestão","key":"sistema","type":"neg"},{"label":"= Subtotal Sistema + Taxas","key":"sistemaTaxas","type":"neg","section":true},{"label":"= Faturamento Líquido","key":"fatLiquido","type":"pos","section":true},{"label":"(-) Tributos Totais","key":"tributos","type":"neg"},{"label":"(-) CMV","key":"cmv","type":"neg"},{"label":"(-) Mão de Obra Total","key":"cmo","type":"neg"},{"label":"(-) Custos Comerciais e MKT","key":"comercial","type":"neg"},{"label":"(-) Custos Operacionais","key":"operacionais","type":"neg"},{"label":"= Resultado Líquido Operacional","key":"resultado","type":"result","section":true}],"sensData":[[200000.0,-3032.6266666666706,-0.015163133333333353,null,null,"Prejuízo"],[240000.0,12516.46,0.052151916666666666,159.7895890691138,13.315799089092815,"Longo"],[280000.0,28065.546666666683,0.1002340952380953,71.2617510627502,5.938479255229184,"Longo"],[320000.0,43614.63333333333,0.13629572916666666,45.85616906863828,3.8213474223865234,"Atenção"],[360000.0,59163.72,0.16434366666666667,33.80450046075534,2.817041705062945,"Atenção"],[400000.0,74712.80666666667,0.1867820166666667,26.769172371251656,2.2307643642709714,"Atenção"],[440000.0,90261.89333333334,0.2051406666666667,22.15774482609272,1.8464787355077268,"Bom"],[480000.0,105810.98000000001,0.22043954166666668,18.90163005767454,1.575135838139545,"Bom"],[520000.0,121360.06666666665,0.23338474358974357,16.479885475782535,1.3733237896485446,"Bom"],[560000.0,136909.15333333335,0.24448063095238098,14.608227071060696,1.2173522559217247,"Bom"],[600000.0,152458.23999999996,0.2540970666666666,13.118346374718746,1.0931955312265622,"Bom"],[640000.0,168007.32666666663,0.2625114479166666,11.904242747508752,0.9920202289590626,"Bom"],[680000.0,183556.41333333336,0.2699359019607844,10.895832859667264,0.9079860716389386,"Bom"],[720000.0,199105.49999999997,0.27653541666666664,10.044925931227416,0.837077160935618,"Bom"],[760000.0,214654.58666666673,0.2824402456140352,9.31729450116882,0.776441208430735,"Bom"],[800000.0,230203.67333333334,0.28775459166666667,8.687958671728117,0.723996555977343,"Bom"],[840000.0,245752.76,0.29256280952380953,8.13826058352305,0.6781883819602541,"Bom"],[880000.0,261301.84666666668,0.2969339166666667,7.653983412338175,0.6378319510281812,"Bom"],[920000.0,276850.93333333335,0.3009249275362319,7.224104235155187,0.6020086862629322,"Bom"],[960000.0,292400.02,0.3045833541666667,6.839944812589273,0.5699954010491061,"Bom"],[1000000.0,392571.6066666667,0.3925716066666667,5.094611953681622,0.4245509961401352,"Bom"]],"fixosData":{"labels":["Royalties+Fundo","Sistema+Cartão","Impostos","CMV","Mão de Obra","Comercial/MKT","Operacionais"],"values":[31744.000000000004,8228.128,21943.039999999997,119040.0,58829.85226666666,26500.0,57046.100000000006]},"projection":{"months":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],"cons":{"receita":[358800.0,358800.0,287040.0,257140.0,242190.00000000003,206309.99999999997,194350.0,194350.0,182390.0,173420.0,200330.0,242190.00000000003,188370.0,179400.0,206309.99999999997,224250.0,236210.0,185380.0,173420.0,167440.00000000003,161460.0,179400.0,218270.0,260130.0,188370.0,179400.0,206309.99999999997,224250.0,236210.0,185380.0,173420.0,167440.00000000003,161460.0,179400.0,218270.0,260130.0,188370.0,179400.0,206309.99999999997,224250.0,236210.0,185380.0,173420.0,167440.00000000003,161460.0,179400.0,218270.0,260130.0,188370.0,179400.0,206309.99999999997,224250.0,236210.0,185380.0,173420.0,167440.00000000003,161460.0,179400.0,218270.0,260130.0],"lucro":[58697.24739999999,58697.24739999999,30802.185920000007,19179.24363666667,13367.772495000012,-579.7582450000227,-5228.935158333326,-5228.935158333326,-9878.112071666674,-13364.994756666669,-2904.3467016666527,13367.772495000012,-7553.523615,-11040.406299999995,-579.7582450000227,6394.007125000011,11043.184038333344,-8715.817843333321,-13364.994756666669,-15689.583213333315,-18014.171670000003,-11040.406299999995,4069.418668333339,20341.537865000006,-7553.523615,-11040.406299999995,-579.7582450000227,6394.007125000011,11043.184038333344,-8715.817843333321,-13364.994756666669,-15689.583213333315,-18014.171670000003,-11040.406299999995,4069.418668333339,20341.537865000006,-7553.523615,-11040.406299999995,-579.7582450000227,6394.007125000011,11043.184038333344,-8715.817843333321,-13364.994756666669,-15689.583213333315,-18014.171670000003,-11040.406299999995,4069.418668333339,20341.537865000006,-7553.523615,-11040.406299999995,-579.7582450000227,6394.007125000011,11043.184038333344,-8715.817843333321,-13364.994756666669,-15689.583213333315,-18014.171670000003,-11040.406299999995,4069.418668333339,20341.537865000006],"acum":[-1941302.7526,-1882605.5052,-1851803.31928,-1832624.0756433334,-1819256.3031483334,-1819836.0613933334,-1825064.9965516666,-1830293.93171,-1840172.0437816666,-1853537.0385383333,-1856441.38524,-1843073.612745,-1850627.1363600001,-1861667.54266,-1862247.300905,-1855853.29378,-1844810.1097416666,-1853525.927585,-1866890.9223416667,-1882580.505555,-1900594.677225,-1911635.083525,-1907565.6648566665,-1887224.1269916664,-1894777.6506066665,-1905818.0569066664,-1906397.8151516663,-1900003.8080266663,-1888960.623988333,-1897676.4418316663,-1911041.436588333,-1926731.0198016663,-1944745.1914716663,-1955785.5977716662,-1951716.1791033328,-1931374.6412383327,-1938928.1648533328,-1949968.5711533327,-1950548.3293983326,-1944154.3222733326,-1933111.1382349993,-1941826.9560783326,-1955191.9508349993,-1970881.5340483326,-1988895.7057183327,-1999936.1120183326,-1995866.6933499991,-1975525.155484999,-1983078.6790999991,-1994119.085399999,-1994698.843644999,-1988304.836519999,-1977261.6524816656,-1985977.470324999,-1999342.4650816657,-2015032.048294999,-2033046.219964999,-2044086.626264999,-2040017.2075966655,-2019675.6697316654],"paybackProjetado":null,"acum60":-2019675.6697316654},"base":{"receita":[476160.0,476160.0,380928.0,341248.0,321408.0,273792.0,257920.0,257920.0,242048.0,230143.99999999997,265856.0,321408.0,249984.0,238080.0,273792.0,297600.0,313472.0,246016.0,230143.99999999997,222208.00000000003,214272.0,238080.0,289664.0,345216.0,249984.0,238080.0,273792.0,297600.0,313472.0,246016.0,230143.99999999997,222208.00000000003,214272.0,238080.0,289664.0,345216.0,249984.0,238080.0,273792.0,297600.0,313472.0,246016.0,230143.99999999997,222208.00000000003,214272.0,238080.0,289664.0,345216.0,249984.0,238080.0,273792.0,297600.0,313472.0,246016.0,230143.99999999997,222208.00000000003,214272.0,238080.0,289664.0,345216.0],"lucro":[104318.26768,104318.26768,67299.00214399998,51874.308170666656,44161.961184,25652.32841600001,19482.450826666663,19482.450826666663,13312.573237333349,8685.165045333328,22567.389621333325,44161.961184,16397.512032000006,11770.103839999996,25652.32841600001,34907.14480000002,41077.022389333324,14855.042634666672,8685.165045333328,5600.2262506666775,2515.287455999991,11770.103839999996,31822.206005333315,53416.77756799999,16397.512032000006,11770.103839999996,25652.32841600001,34907.14480000002,41077.022389333324,14855.042634666672,8685.165045333328,5600.2262506666775,2515.287455999991,11770.103839999996,31822.206005333315,53416.77756799999,16397.512032000006,11770.103839999996,25652.32841600001,34907.14480000002,41077.022389333324,14855.042634666672,8685.165045333328,5600.2262506666775,2515.287455999991,11770.103839999996,31822.206005333315,53416.77756799999,16397.512032000006,11770.103839999996,25652.32841600001,34907.14480000002,41077.022389333324,14855.042634666672,8685.165045333328,5600.2262506666775,2515.287455999991,11770.103839999996,31822.206005333315,53416.77756799999],"acum":[-1895681.73232,-1791363.46464,-1724064.4624959999,-1672190.1543253332,-1628028.1931413333,-1602375.8647253332,-1582893.4138986666,-1563410.963072,-1550098.3898346666,-1541413.2247893333,-1518845.835168,-1474683.8739840002,-1458286.361952,-1446516.258112,-1420863.929696,-1385956.7848959998,-1344879.7625066666,-1330024.719872,-1321339.5548266666,-1315739.328576,-1313224.04112,-1301453.93728,-1269631.7312746667,-1216214.9537066668,-1199817.4416746667,-1188047.3378346667,-1162395.0094186666,-1127487.8646186665,-1086410.8422293332,-1071555.7995946666,-1062870.6345493332,-1057270.4082986666,-1054755.1208426666,-1042985.0170026666,-1011162.8109973333,-957746.0334293332,-941348.5213973332,-929578.4175573332,-903926.0891413332,-869018.9443413332,-827941.9219519999,-813086.8793173332,-804401.7142719999,-798801.4880213332,-796286.2005653332,-784516.0967253332,-752693.8907199999,-699277.1131519999,-682879.6011199999,-671109.4972799999,-645457.1688639999,-610550.0240639999,-569473.0016746665,-554617.9590399999,-545932.7939946665,-540332.5677439999,-537817.2802879999,-526047.1764479999,-494224.97044266656,-440808.19287466654],"paybackProjetado":null,"acum60":-440808.19287466654},"otim":{"receita":[619200.0,619200.0,495360.0,443760.0,417960.0,356040.0,335400.0,335400.0,314760.0,299280.0,345720.0,417960.0,325080.0,309600.0,356040.0,387000.0,407640.0,319920.0,299280.0,288960.0,278640.0,309600.0,376680.0,448920.0,325080.0,309600.0,356040.0,387000.0,407640.0,319920.0,299280.0,288960.0,278640.0,309600.0,376680.0,448920.0,325080.0,309600.0,356040.0,387000.0,407640.0,319920.0,299280.0,288960.0,278640.0,309600.0,376680.0,448920.0,325080.0,309600.0,356040.0,387000.0,407640.0,319920.0,299280.0,288960.0,278640.0,309600.0,376680.0,448920.0],"lucro":[141163.82160000005,141163.82160000005,93023.84927999998,72965.52748,62936.36657999999,38866.38041999999,30843.05169999999,30843.05169999999,22819.722980000017,16802.22644,34854.71606000002,62936.36657999999,26831.387339999987,20813.89080000003,38866.38041999999,50901.373500000016,58924.70221999999,24825.55516,16802.22644,12790.56208,8778.897720000012,20813.89080000003,46889.709139999984,74971.35965999999,26831.387339999987,20813.89080000003,38866.38041999999,50901.373500000016,58924.70221999999,24825.55516,16802.22644,12790.56208,8778.897720000012,20813.89080000003,46889.709139999984,74971.35965999999,26831.387339999987,20813.89080000003,38866.38041999999,50901.373500000016,58924.70221999999,24825.55516,16802.22644,12790.56208,8778.897720000012,20813.89080000003,46889.709139999984,74971.35965999999,26831.387339999987,20813.89080000003,38866.38041999999,50901.373500000016,58924.70221999999,24825.55516,16802.22644,12790.56208,8778.897720000012,20813.89080000003,46889.709139999984,74971.35965999999],"acum":[-1858836.1783999999,-1717672.3567999997,-1624648.5075199998,-1551682.9800399998,-1488746.61346,-1449880.2330399998,-1419037.18134,-1388194.12964,-1365374.4066599999,-1348572.18022,-1313717.46416,-1250781.09758,-1223949.7102400002,-1203135.8194400002,-1164269.4390200002,-1113368.0655200002,-1054443.3633,-1029617.8081400001,-1012815.5817000001,-1000025.0196200002,-991246.1219000001,-970432.2311000001,-923542.5219600002,-848571.1623000002,-821739.7749600002,-800925.8841600001,-762059.5037400002,-711158.1302400002,-652233.4280200002,-627407.8728600002,-610605.6464200002,-597815.0843400003,-589036.1866200003,-568222.2958200002,-521332.58668000024,-446361.2270200002,-419529.8396800002,-398715.94888000016,-359849.56846000016,-308948.1949600001,-250023.49274000013,-225197.93758000014,-208395.71114000014,-195605.14906000014,-186826.25134000013,-166012.3605400001,-119122.65140000012,-44151.29174000013,-17319.904400000145,3493.986399999885,42360.36681999987,93261.7403199999,152186.4425399999,177011.9976999999,193814.2241399999,206604.7862199999,215383.6839399999,236197.57473999992,283087.2838799999,358058.64353999984],"paybackProjetado":50,"acum60":358058.64353999984}},"dashboardExec":{"miniKpis":[{"label":"Investimento","value":2000000.0,"sub":"Investimento total"},{"label":"Receita Moderado","value":396800,"sub":"Receita mensal cenário moderado","cls":"scenario-base"},{"label":"Ponto de Equilíbrio","value":280603.1308162579,"sub":"Faturamento mínimo para zerar lucro"},{"label":"Gap Moderado vs Equilíbrio","value":116196.86918374209,"sub":"Moderado acima do equilíbrio"},{"label":"Lucro Moderado","value":73468.87973333334,"sub":"Resultado mensal no cenário moderado","cls":"scenario-base"},{"label":"Lucro Otimista","value":101047.17800000001,"sub":"Resultado mensal no cenário otimista","cls":"scenario-otim"},{"label":"PB Otimista Linear","value":"20 meses","sub":"Investimento ÷ lucro otimista","cls":"scenario-otim","isText":true},{"label":"PB Otimista Projetado","value":"50 meses","sub":"Mês em que o acumulado passa de zero","cls":"scenario-otim","isText":true},{"label":"PB Pessimista Linear","value":"56 meses","sub":"Investimento ÷ lucro pessimista","cls":"scenario-cons","isText":true},{"label":"PB Pessimista Projetado","value":"Sem PB","sub":"Mês em que o acumulado passa de zero","cls":"scenario-cons","isText":true},{"label":"PB Moderado Linear","value":"27 meses","sub":"Investimento ÷ lucro moderado","cls":"scenario-base","isText":true},{"label":"PB Moderado Projetado","value":"Sem PB","sub":"Mês em que o acumulado passa de zero","cls":"scenario-base","isText":true}],"summaryRows":[{"scenario":"Pessimista","key":"cons"},{"scenario":"Moderado","key":"base"},{"scenario":"Otimista","key":"otim"}],"leituraRows":[["Status Moderado","Lucro positivo","OK","O cenário moderado gera caixa positivo.","Lucro moderado + ponto de equilíbrio"],["Status Otimista","Atenção ao prazo","Atenção","O payback projetado ocorre no mês 50, acima do intervalo ideal de 36 meses.","Lucro + payback projetado"],["Receita alvo p/ lucro R$ 60 mil",340603.1308162579,"Dentro do moderado","Para lucro mensal de R$ 60 mil, a receita precisa superar o ponto calculado.","Custo fixo + lucro alvo / margem operacional"],["Validação necessária","Validar dados antes de assinar","Recomendado","Sem DRE real das unidades, lucro e payback permanecem premissas.","DRE real de unidades existentes"]]}};
 
 const summary = dashboardData.summary;
 const scenarios = dashboardData.scenarios;
+const dreCompareRows = dashboardData.dreCompareRows;
+const dreDetailRows = dashboardData.dreDetailRows;
 const sensData = dashboardData.sensData;
 const fixosData = dashboardData.fixosData;
 const months = dashboardData.projection.months;
 const projection = dashboardData.projection;
+const dashboardExec = dashboardData.dashboardExec;
+const scenarioOrder = ['cons','base','otim'];
 
-// ── UTILS ─────────────────────────────────────────────────────────────
 const br = new Intl.NumberFormat('pt-BR');
 
 function fmt(v) {
@@ -2326,14 +1549,20 @@ function fmtFull(v) {
   return s + 'R$ ' + Math.abs(n).toLocaleString('pt-BR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
 }
 
+function fmtMoney0(v) {
+  const n = Number(v) || 0;
+  return (n < 0 ? '− ' : '') + 'R$ ' + Math.abs(n).toLocaleString('pt-BR', {maximumFractionDigits: 0});
+}
+
 function pct(v) {
   const n = Number(v) || 0;
   return (n * 100).toLocaleString('pt-BR', {minimumFractionDigits: 1, maximumFractionDigits: 1}) + '%';
 }
 
-function cumulative(values) {
-  let total = 0;
-  return values.map(v => (total += Number(v) || 0));
+function dreMoney(v, negative) {
+  const n = Number(v) || 0;
+  const sign = negative ? '− ' : '';
+  return sign + 'R$ ' + Math.abs(n).toLocaleString('pt-BR', {maximumFractionDigits: 0});
 }
 
 function firstCrossMonth(values, target) {
@@ -2355,8 +1584,44 @@ function pbYearsText(months) {
   return (months / 12).toLocaleString('pt-BR', {minimumFractionDigits: 1, maximumFractionDigits: 1}) + ' anos';
 }
 
-function valueClass(value, goodLimit = 0) {
-  return Number(value) >= goodLimit ? 'kpi-positive' : 'kpi-negative';
+function scenarioClass(sc) {
+  return sc === 'cons' ? 'sc-cons' : sc === 'base' ? 'sc-base' : 'sc-otim';
+}
+
+
+const dreFullRows = [{"label": "Receita bruta", "values": {"cons": ["R$ 299.000,00", "100,00%"], "base": ["R$ 396.800,00", "100,00%"], "otim": ["R$ 516.000,00", "100,00%"]}}, {"label": "(-) Royalties", "values": {"cons": ["-R$ 20.930,00", "7,00%"], "base": ["-R$ 27.776,00", "7,00%"], "otim": ["-R$ 36.120,00", "7,00%"]}}, {"label": "(-) Fundo cooperado de propaganda", "values": {"cons": ["-R$ 2.990,00", "1,00%"], "base": ["-R$ 3.968,00", "1,00%"], "otim": ["-R$ 5.160,00", "1,00%"]}}, {"label": "SUB-TOTAL ROYALTIES E FUNDO", "values": {"cons": ["-R$ 23.920,00", "8,00%"], "base": ["-R$ 31.744,00", "8,00%"], "otim": ["-R$ 41.280,00", "8,00%"]}, "kind": "subtotal"}, {"label": "(-) Taxa cartão crédito/débito", "values": {"cons": ["-R$ 5.220,54", "1,75%"], "base": ["-R$ 6.928,13", "1,75%"], "otim": ["-R$ 9.009,36", "1,75%"]}}, {"label": "(-) Sistema de gestão", "values": {"cons": ["-R$ 1.300,00", "0,43%"], "base": ["-R$ 1.300,00", "0,33%"], "otim": ["-R$ 1.300,00", "0,25%"]}}, {"label": "SUB-TOTAL SISTEMA E TAXAS", "values": {"cons": ["-R$ 6.520,54", "2,18%"], "base": ["-R$ 8.228,13", "2,07%"], "otim": ["-R$ 10.309,36", "2,00%"]}, "kind": "subtotal"}, {"label": "Faturamento líquido após franquia/sistema/taxas", "values": {"cons": ["R$ 268.559,46", "89,82%"], "base": ["R$ 356.827,87", "89,93%"], "otim": ["R$ 464.410,64", "90,00%"]}}, {"label": "(-) C.S.L.L. (provisão)", "values": {"cons": ["-R$ 3.229,20", "1,08%"], "base": ["-R$ 4.285,44", "1,08%"], "otim": ["-R$ 5.572,80", "1,08%"]}}, {"label": "(-) I.R.P.J. (provisão)", "values": {"cons": ["-R$ 3.588,00", "1,20%"], "base": ["-R$ 4.761,60", "1,20%"], "otim": ["-R$ 6.192,00", "1,20%"]}}, {"label": "(-) I.C.M.S. (mensal)", "values": {"cons": ["-R$ 1.106,30", "0,37%"], "base": ["-R$ 1.468,16", "0,37%"], "otim": ["-R$ 1.909,20", "0,37%"]}}, {"label": "(-) Cofins (mensal)", "values": {"cons": ["-R$ 6.189,30", "2,07%"], "base": ["-R$ 8.213,76", "2,07%"], "otim": ["-R$ 10.681,20", "2,07%"]}}, {"label": "(-) P.I.S. (mensal)", "values": {"cons": ["-R$ 1.345,50", "0,45%"], "base": ["-R$ 1.785,60", "0,45%"], "otim": ["-R$ 2.322,00", "0,45%"]}}, {"label": "(-) Outros impostos/adicional", "values": {"cons": ["-R$ 1.076,40", "0,36%"], "base": ["-R$ 1.428,48", "0,36%"], "otim": ["-R$ 1.857,60", "0,36%"]}}, {"label": "(-) Tributos total", "values": {"cons": ["-R$ 16.534,70", "5,53%"], "base": ["-R$ 21.943,04", "5,53%"], "otim": ["-R$ 28.534,80", "5,53%"]}, "kind": "subtotal"}, {"label": "(-) CMV", "values": {"cons": ["-R$ 89.700,00", "30,00%"], "base": ["-R$ 119.040,00", "30,00%"], "otim": ["-R$ 154.800,00", "30,00%"]}}, {"label": "Resultado após CMV, tributos, franquia e taxas", "values": {"cons": ["R$ 162.324,76", "54,29%"], "base": ["R$ 215.844,83", "54,40%"], "otim": ["R$ 281.075,84", "54,47%"]}}, {"section": "CUSTO DE MÃO DE OBRA"}, {"label": "Salário líquido/base de salários", "values": {"cons": ["-R$ 5.220,00", "1,75%"], "base": ["-R$ 5.220,00", "1,32%"], "otim": ["-R$ 7.830,00", "1,52%"]}}, {"label": "Taxa de serviço", "values": {"cons": ["-R$ 15.024,75", "5,03%"], "base": ["-R$ 19.939,20", "5,03%"], "otim": ["-R$ 25.929,00", "5,03%"]}}, {"label": "FGTS funcionários", "values": {"cons": ["-R$ 1.619,58", "0,54%"], "base": ["-R$ 2.012,74", "0,51%"], "otim": ["-R$ 2.700,72", "0,52%"]}}, {"label": "I.N.S.S. patronal", "values": {"cons": ["-R$ 5.830,49", "1,95%"], "base": ["-R$ 7.245,85", "1,83%"], "otim": ["-R$ 9.722,59", "1,88%"]}}, {"label": "Pró-labore", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Estagiário", "values": {"cons": ["-R$ 1.000,00", "0,33%"], "base": ["-R$ 1.000,00", "0,25%"], "otim": ["-R$ 1.000,00", "0,19%"]}}, {"label": "Subtotal folha", "values": {"cons": ["-R$ 28.694,82", "9,60%"], "base": ["-R$ 35.417,79", "8,93%"], "otim": ["-R$ 47.182,31", "9,14%"]}, "kind": "subtotal"}, {"section": "BENEFÍCIOS"}, {"label": "Alimentação funcionários", "values": {"cons": ["-R$ 1.800,00", "0,60%"], "base": ["-R$ 1.800,00", "0,45%"], "otim": ["-R$ 1.800,00", "0,35%"]}}, {"label": "Outros benefícios", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Subtotal benefícios", "values": {"cons": ["-R$ 1.800,00", "0,60%"], "base": ["-R$ 1.800,00", "0,45%"], "otim": ["-R$ 1.800,00", "0,35%"]}, "kind": "subtotal"}, {"section": "INTERMITENTES"}, {"label": "Gerais", "values": {"cons": ["-R$ 8.000,00", "2,68%"], "base": ["-R$ 8.000,00", "2,02%"], "otim": ["-R$ 11.200,00", "2,17%"]}}, {"label": "Segurança", "values": {"cons": ["-R$ 6.720,00", "2,25%"], "base": ["-R$ 6.720,00", "1,69%"], "otim": ["-R$ 9.600,00", "1,86%"]}}, {"label": "Policiais", "values": {"cons": ["-R$ 2.000,00", "0,67%"], "base": ["-R$ 2.000,00", "0,50%"], "otim": ["-R$ 3.000,00", "0,58%"]}}, {"label": "Subtotal intermitentes", "values": {"cons": ["-R$ 16.720,00", "5,59%"], "base": ["-R$ 16.720,00", "4,21%"], "otim": ["-R$ 23.800,00", "4,61%"]}, "kind": "subtotal"}, {"section": "PROVISÕES DE FOLHA"}, {"label": "Provisão de férias", "values": {"cons": ["-R$ 2.249,42", "0,75%"], "base": ["-R$ 2.795,47", "0,70%"], "otim": ["-R$ 3.751,00", "0,73%"]}}, {"label": "Provisão de 13º", "values": {"cons": ["-R$ 1.687,06", "0,56%"], "base": ["-R$ 2.096,60", "0,53%"], "otim": ["-R$ 2.813,25", "0,55%"]}}, {"label": "Subtotal provisões", "values": {"cons": ["-R$ 3.936,48", "1,32%"], "base": ["-R$ 4.892,07", "1,23%"], "otim": ["-R$ 6.564,25", "1,27%"]}, "kind": "subtotal"}, {"label": "Total CMO", "values": {"cons": ["-R$ 51.151,30", "17,11%"], "base": ["-R$ 58.829,85", "14,83%"], "otim": ["-R$ 79.346,56", "15,38%"]}, "kind": "subtotal"}, {"section": "CUSTOS COMERCIAIS E MKT"}, {"label": "Marketing local", "values": {"cons": ["-R$ 3.500,00", "1,17%"], "base": ["-R$ 3.500,00", "0,88%"], "otim": ["-R$ 3.500,00", "0,68%"]}}, {"label": "Patrocínio de marketing", "values": {"cons": ["-R$ 7.000,00", "2,34%"], "base": ["-R$ 7.000,00", "1,76%"], "otim": ["-R$ 7.000,00", "1,36%"]}}, {"label": "Agência de promoção", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Promoters", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Banda", "values": {"cons": ["-R$ 7.200,00", "2,41%"], "base": ["-R$ 7.200,00", "1,81%"], "otim": ["-R$ 10.800,00", "2,09%"]}}, {"label": "Cantores/DJ", "values": {"cons": ["-R$ 8.800,00", "2,94%"], "base": ["-R$ 8.800,00", "2,22%"], "otim": ["-R$ 12.800,00", "2,48%"]}}, {"label": "Total Comercial/MKT", "values": {"cons": ["-R$ 26.500,00", "8,86%"], "base": ["-R$ 26.500,00", "6,68%"], "otim": ["-R$ 34.100,00", "6,61%"]}, "kind": "subtotal"}, {"section": "CUSTOS OPERACIONAIS"}, {"label": "Aluguel", "values": {"cons": ["-R$ 12.000,00", "4,01%"], "base": ["-R$ 12.000,00", "3,02%"], "otim": ["-R$ 12.000,00", "2,33%"]}}, {"label": "Condomínio", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "IPTU", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Luz, água e outros", "values": {"cons": ["-R$ 3.500,00", "1,17%"], "base": ["-R$ 3.500,00", "0,88%"], "otim": ["-R$ 3.500,00", "0,68%"]}}, {"label": "Segurança monitorada", "values": {"cons": ["-R$ 261,49", "0,09%"], "base": ["-R$ 261,49", "0,07%"], "otim": ["-R$ 261,49", "0,05%"]}}, {"label": "Manutenção geral", "values": {"cons": ["-R$ 2.500,00", "0,84%"], "base": ["-R$ 2.500,00", "0,63%"], "otim": ["-R$ 2.500,00", "0,48%"]}}, {"label": "Copos e utensílios", "values": {"cons": ["-R$ 1.500,00", "0,50%"], "base": ["-R$ 1.500,00", "0,38%"], "otim": ["-R$ 1.500,00", "0,29%"]}}, {"label": "Materiais de limpeza", "values": {"cons": ["-R$ 2.500,00", "0,84%"], "base": ["-R$ 2.500,00", "0,63%"], "otim": ["-R$ 2.500,00", "0,48%"]}}, {"label": "Uniformes e cardápios", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Advogados e despesas jurídicas", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Contabilidade", "values": {"cons": ["-R$ 825,00", "0,28%"], "base": ["-R$ 825,00", "0,21%"], "otim": ["-R$ 825,00", "0,16%"]}}, {"label": "ECAD", "values": {"cons": ["-R$ 470,00", "0,16%"], "base": ["-R$ 470,00", "0,12%"], "otim": ["-R$ 470,00", "0,09%"]}}, {"label": "Seguro", "values": {"cons": ["-R$ 525,93", "0,18%"], "base": ["-R$ 525,93", "0,13%"], "otim": ["-R$ 525,93", "0,10%"]}}, {"label": "TV, internet e telefone", "values": {"cons": ["-R$ 400,00", "0,13%"], "base": ["-R$ 400,00", "0,10%"], "otim": ["-R$ 400,00", "0,08%"]}}, {"label": "Taxas e contribuições", "values": {"cons": ["-R$ 169,68", "0,06%"], "base": ["-R$ 169,68", "0,04%"], "otim": ["-R$ 169,68", "0,03%"]}}, {"label": "Outras despesas", "values": {"cons": ["-R$ 500,00", "0,17%"], "base": ["-R$ 500,00", "0,13%"], "otim": ["-R$ 500,00", "0,10%"]}}, {"label": "Despesas financeiras", "values": {"cons": ["-R$ 150,00", "0,05%"], "base": ["-R$ 150,00", "0,04%"], "otim": ["-R$ 150,00", "0,03%"]}}, {"label": "Total custos operacionais", "values": {"cons": ["-R$ 49.222,10", "16,46%"], "base": ["-R$ 57.046,10", "14,38%"], "otim": ["-R$ 66.582,10", "12,90%"]}, "kind": "subtotal"}, {"section": "RECEITAS E DESPESAS EXTRAS"}, {"label": "Outras receitas", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Compra de ativo fixo", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Pagamento de empréstimo", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Pagamento processos jurídicos", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Obras e reformas", "values": {"cons": ["R$ 0,00", "0,00%"], "base": ["R$ 0,00", "0,00%"], "otim": ["R$ 0,00", "0,00%"]}}, {"label": "Resultado líquido operacional", "values": {"cons": ["R$ 35.451,36", "13,20%"], "base": ["R$ 73.468,88", "20,59%"], "otim": ["R$ 101.047,18", "21,76%"]}, "kind": "result"}, {"label": "Margem líquida", "values": {"cons": ["", "11,86%"], "base": ["", "18,52%"], "otim": ["", "19,58%"]}, "kind": "margin"}, {"label": "Ponto de equilíbrio", "values": {"cons": ["R$ 280.603,13", "93,85%"], "base": ["R$ 280.603,13", "70,72%"], "otim": ["R$ 348.408,99", "67,52%"]}, "kind": "breakeven"}, {"label": "PB Linear — meses", "values": {"cons": ["56,42", ""], "base": ["27,22", ""], "otim": ["19,79", ""]}, "kind": "pb"}, {"label": "PB Linear — anos", "values": {"cons": ["4,70", ""], "base": ["2,27", ""], "otim": ["1,65", ""]}, "kind": "pb"}];
+
+function htmlEscape(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function dreFullValueCell(text, sc) {
+  const clean = String(text ?? '').trim();
+  const cls = clean.startsWith('-') ? 'neg' : clean.startsWith('R$') ? 'pos' : '';
+  return `<td class="${scenarioClass(sc)} ${cls}">${htmlEscape(clean)}</td>`;
+}
+
+function dreFullPctCell(text) {
+  return `<td class="pct-col">${htmlEscape(String(text ?? '').trim())}</td>`;
+}
+
+function buildDreCompare() {
+  const body = document.getElementById('dre-compare-body');
+  body.innerHTML = dreFullRows.map(row => {
+    if (row.section) return `<tr class="dre-full-section"><td colspan="7">${htmlEscape(row.section)}</td></tr>`;
+    const kindClass = row.kind === 'subtotal' ? 'dre-subtotal-row' : row.kind === 'result' ? 'dre-result-row' : row.kind === 'margin' ? 'dre-margin-row' : row.kind === 'breakeven' ? 'dre-breakeven-row' : row.kind === 'pb' ? 'dre-pb-row' : '';
+    return `<tr class="${kindClass}">
+      <td>${htmlEscape(row.label)}</td>
+      ${dreFullValueCell(row.values.cons[0], 'cons')}${dreFullPctCell(row.values.cons[1])}
+      ${dreFullValueCell(row.values.base[0], 'base')}${dreFullPctCell(row.values.base[1])}
+      ${dreFullValueCell(row.values.otim[0], 'otim')}${dreFullPctCell(row.values.otim[1])}
+    </tr>`;
+  }).join('');
 }
 
 const chartDefaults = {
@@ -2393,52 +1658,24 @@ const chartDefaults = {
   }
 };
 
-// ── CHARTS INIT ───────────────────────────────────────────────────────
 let costChart, acumChart, receitaMaturacaoChart, sensChart, fixosChart;
 
 function initCharts() {
-  const scenarioOrder = ['cons','base','otim'];
   const scenarioLabels = scenarioOrder.map(k => scenarios[k].label);
 
-  // Composição de custos por cenário
   const ctx1 = document.getElementById('costChart').getContext('2d');
   costChart = new Chart(ctx1, {
     type: 'bar',
     data: {
       labels: scenarioLabels,
       datasets: [
-        {
-          label:'CMV',
-          data: scenarioOrder.map(k => scenarios[k].cmv),
-          backgroundColor:'rgba(0,224,184,0.88)',
-          borderColor:'#00f5c8',
-          borderWidth:1,
-          borderRadius:5
-        },
-        {
-          label:'Tributos + Taxas',
-          data: scenarioOrder.map(k => scenarios[k].tributos + scenarios[k].taxas),
-          backgroundColor:'rgba(255,77,109,0.86)',
-          borderColor:'#ff6b86',
-          borderWidth:1,
-          borderRadius:5
-        },
-        {
-          label:'Royalties + Marketing',
-          data: scenarioOrder.map(k => scenarios[k].royalties + scenarios[k].mktLocal + scenarios[k].mktFundo),
-          backgroundColor:'rgba(139,92,246,0.90)',
-          borderColor:'#a78bfa',
-          borderWidth:1,
-          borderRadius:5
-        },
-        {
-          label:'Fixos',
-          data: scenarioOrder.map(k => scenarios[k].fixos),
-          backgroundColor:'rgba(255,176,0,0.90)',
-          borderColor:'#ffd166',
-          borderWidth:1,
-          borderRadius:5
-        }
+        { label:'Royalties + Fundo', data: scenarioOrder.map(k => scenarios[k].royaltiesFundo), backgroundColor:'rgba(139,92,246,0.90)', borderColor:'#a78bfa', borderWidth:1, borderRadius:5 },
+        { label:'Sistema + Cartão', data: scenarioOrder.map(k => scenarios[k].sistemaTaxas), backgroundColor:'rgba(56,189,248,0.85)', borderColor:'#38bdf8', borderWidth:1, borderRadius:5 },
+        { label:'Impostos', data: scenarioOrder.map(k => scenarios[k].tributos), backgroundColor:'rgba(255,77,109,0.86)', borderColor:'#ff6b86', borderWidth:1, borderRadius:5 },
+        { label:'CMV', data: scenarioOrder.map(k => scenarios[k].cmv), backgroundColor:'rgba(0,224,184,0.88)', borderColor:'#00f5c8', borderWidth:1, borderRadius:5 },
+        { label:'Mão de obra', data: scenarioOrder.map(k => scenarios[k].cmo), backgroundColor:'rgba(255,176,0,0.90)', borderColor:'#ffd166', borderWidth:1, borderRadius:5 },
+        { label:'Comercial/MKT', data: scenarioOrder.map(k => scenarios[k].comercial), backgroundColor:'rgba(249,115,22,0.90)', borderColor:'#fb923c', borderWidth:1, borderRadius:5 },
+        { label:'Operacionais', data: scenarioOrder.map(k => scenarios[k].operacionais), backgroundColor:'rgba(163,230,53,0.78)', borderColor:'#bef264', borderWidth:1, borderRadius:5 }
       ]
     },
     options: {
@@ -2450,7 +1687,6 @@ function initCharts() {
     }
   });
 
-  // Acumulado pós-CAPEX linear: lucro mensal fixo de cada cenário
   const ctx2 = document.getElementById('acumChart').getContext('2d');
   const linearAcum = {
     cons: months.map(m => (scenarios.cons.lucro * m) - summary.investimentoTotal),
@@ -2467,32 +1703,73 @@ function initCharts() {
     data:{
       labels: months,
       datasets:[
-        { label:'Conservador linear', data:linearAcum.cons, borderColor:'#ff4d6d', backgroundColor:'rgba(255,77,109,0.08)', borderWidth:1.8, pointRadius:0, tension:0.12 },
-        { label:'Base linear', data:linearAcum.base, borderColor:'#f5c542', backgroundColor:'rgba(245,197,66,0.08)', borderWidth:2.2, pointRadius:0, tension:0.12 },
+        { label:'Pessimista linear', data:linearAcum.cons, borderColor:'#ff4d6d', backgroundColor:'rgba(255,77,109,0.08)', borderWidth:1.8, pointRadius:0, tension:0.12 },
+        { label:'Moderado linear', data:linearAcum.base, borderColor:'#f5c542', backgroundColor:'rgba(245,197,66,0.08)', borderWidth:2.2, pointRadius:0, tension:0.12 },
         { label:'Otimista linear', data:linearAcum.otim, borderColor:'#00e0a4', backgroundColor:'rgba(0,224,164,0.10)', borderWidth:1.8, pointRadius:0, tension:0.12 },
-        { label:'Zero', data:months.map(()=>0), borderColor:'rgba(255,255,255,0.42)', borderWidth:1.2, borderDash:[4,4], pointRadius:0 },
-        { label:'PB Cons. linear', data:pointAt(linearAcum.cons, pbLinear.cons), borderColor:'#ff4d6d', backgroundColor:'#ff4d6d', pointRadius:5, pointHoverRadius:7, showLine:false },
-        { label:'PB Base linear', data:pointAt(linearAcum.base, pbLinear.base), borderColor:'#f5c542', backgroundColor:'#f5c542', pointRadius:5, pointHoverRadius:7, showLine:false },
-        { label:'PB Otim. linear', data:pointAt(linearAcum.otim, pbLinear.otim), borderColor:'#00e0a4', backgroundColor:'#00e0a4', pointRadius:5, pointHoverRadius:7, showLine:false }
+        { label:'Zero', data:months.map(()=>0), borderColor:'rgba(255,255,255,0.42)', borderWidth:1.2, borderDash:[4,4], pointRadius:0 }
       ]
     },
     options:{
       ...chartDefaults,
       plugins: {
         ...chartDefaults.plugins,
-        legend: {
-          labels: {
-            color:'#ffffff',
-            font:{family:'DM Mono',weight:'900',size:11},
-            boxWidth:10,
-            padding:12,
-            filter: item => !item.text.startsWith('PB ')
-          }
-        },
+        legend: { labels: { color:'#ffffff', font:{family:'DM Mono',weight:'900',size:11}, boxWidth:10, padding:12 } },
+        tooltip: { callbacks: { title: ctx => 'Mês ' + ctx[0].label, label: ctx => `${ctx.dataset.label}: ${fmtFull(ctx.parsed.y)}` } }
+      },
+      scales:{
+        x:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},maxTicksLimit:12,callback:(_,i)=>i%6===0?`Mês ${months[i]}`:null},grid:{color:'rgba(255,255,255,0.04)'}},
+        y:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},callback:v=>fmt(v).replace('R$ ','')},grid:{color:'rgba(255,255,255,0.06)'}}
+      }
+    }
+  });
+
+  const ctxReceita = document.getElementById('receitaMaturacaoChart').getContext('2d');
+  const projAcum = {
+    cons: projection.cons.acum,
+    base: projection.base.acum,
+    otim: projection.otim.acum
+  };
+  const pbProj = {
+    cons: projection.cons.paybackProjetado || firstCrossMonth(projAcum.cons, 0),
+    base: projection.base.paybackProjetado || firstCrossMonth(projAcum.base, 0),
+    otim: projection.otim.paybackProjetado || firstCrossMonth(projAcum.otim, 0)
+  };
+  const caption = document.getElementById('receitaPbCaption');
+  caption.innerHTML = `
+    <span class="pb-chip invest">Linha zero = CAPEX recuperado (${fmtFull(summary.investimentoTotal)})</span>
+    <span class="pb-chip cons">Pessimista: ${pbProj.cons ? 'PB no mês ' + pbProj.cons : 'sem PB em 60 meses'}</span>
+    <span class="pb-chip base">Moderado: ${pbProj.base ? 'PB no mês ' + pbProj.base : 'sem PB em 60 meses'}</span>
+    <span class="pb-chip otim">Otimista: ${pbProj.otim ? 'PB no mês ' + pbProj.otim : 'sem PB em 60 meses'}</span>`;
+  receitaMaturacaoChart = new Chart(ctxReceita, {
+    type:'line',
+    data:{
+      labels: months,
+      datasets:[
+        { label:'Pessimista projetado', data:projAcum.cons, borderColor:'#ff4d6d', backgroundColor:'rgba(255,77,109,0.10)', borderWidth:2.2, pointRadius:0, tension:0.20 },
+        { label:'Moderado projetado', data:projAcum.base, borderColor:'#f5c542', backgroundColor:'rgba(245,197,66,0.10)', borderWidth:2.6, pointRadius:0, tension:0.20 },
+        { label:'Otimista projetado', data:projAcum.otim, borderColor:'#00e0a4', backgroundColor:'rgba(0,224,164,0.11)', borderWidth:2.2, pointRadius:0, tension:0.20 },
+        { label:'Zero', data:months.map(()=>0), borderColor:'rgba(255,255,255,0.75)', backgroundColor:'rgba(255,255,255,0.05)', borderWidth:1.6, borderDash:[7,5], pointRadius:0 },
+        { label:'PB Otimista mês '+(pbProj.otim || '—'), data:pointAt(projAcum.otim, pbProj.otim), borderColor:'#00e0a4', backgroundColor:'#00e0a4', pointRadius:6, pointHoverRadius:8, showLine:false }
+      ]
+    },
+    options:{
+      ...chartDefaults,
+      interaction:{mode:'index',intersect:false},
+      plugins: {
+        ...chartDefaults.plugins,
+        legend: { labels: { color:'#ffffff', font:{family:'DM Mono',weight:'900',size:11}, boxWidth:10, padding:12, filter: item => !item.text.startsWith('PB ') } },
         tooltip: {
           callbacks: {
             title: ctx => 'Mês ' + ctx[0].label,
-            label: ctx => `${ctx.dataset.label}: ${fmtFull(ctx.parsed.y)}`
+            label: ctx => `${ctx.dataset.label}: ${fmtFull(ctx.parsed.y)}`,
+            afterBody: ctx => {
+              const i = ctx?.[0]?.dataIndex ?? 0;
+              return [
+                'Lucro mês pess.: ' + fmtFull(projection.cons.lucro[i]),
+                'Lucro mês mod.: ' + fmtFull(projection.base.lucro[i]),
+                'Lucro mês otim.: ' + fmtFull(projection.otim.lucro[i])
+              ];
+            }
           }
         }
       },
@@ -2503,82 +1780,6 @@ function initCharts() {
     }
   });
 
-  // Lucro acumulado pós-CAPEX com maturação: lucro mensal variável da projeção
-  const ctxReceita = document.getElementById('receitaMaturacaoChart')?.getContext('2d');
-  if (ctxReceita) {
-    const projAcum = {
-      cons: projection.cons.acum,
-      base: projection.base.acum,
-      otim: projection.otim.acum
-    };
-    const pbProj = {
-      cons: projection.cons.paybackProjetado || firstCrossMonth(projAcum.cons, 0),
-      base: projection.base.paybackProjetado || firstCrossMonth(projAcum.base, 0),
-      otim: projection.otim.paybackProjetado || firstCrossMonth(projAcum.otim, 0)
-    };
-    const caption = document.getElementById('receitaPbCaption');
-    if (caption) {
-      caption.innerHTML = `
-        <span class="pb-chip invest">Linha zero = CAPEX recuperado (${fmtFull(summary.investimentoTotal)})</span>
-        <span class="pb-chip cons">Conservador: ${pbProj.cons ? 'PB no mês ' + pbProj.cons : 'sem PB em 60 meses'}</span>
-        <span class="pb-chip base">Base: ${pbProj.base ? 'PB no mês ' + pbProj.base : 'sem PB em 60 meses'}</span>
-        <span class="pb-chip otim">Otimista: ${pbProj.otim ? 'PB no mês ' + pbProj.otim : 'sem PB em 60 meses'}</span>`;
-    }
-    receitaMaturacaoChart = new Chart(ctxReceita, {
-      type:'line',
-      data:{
-        labels: months,
-        datasets:[
-          { label:'Conservador projetado', data:projAcum.cons, borderColor:'#ff4d6d', backgroundColor:'rgba(255,77,109,0.10)', borderWidth:2.2, pointRadius:0, tension:0.20 },
-          { label:'Base projetado', data:projAcum.base, borderColor:'#f5c542', backgroundColor:'rgba(245,197,66,0.10)', borderWidth:2.6, pointRadius:0, tension:0.20 },
-          { label:'Otimista projetado', data:projAcum.otim, borderColor:'#00e0a4', backgroundColor:'rgba(0,224,164,0.11)', borderWidth:2.2, pointRadius:0, tension:0.20 },
-          { label:'Zero', data:months.map(()=>0), borderColor:'rgba(255,255,255,0.75)', backgroundColor:'rgba(255,255,255,0.05)', borderWidth:1.6, borderDash:[7,5], pointRadius:0 },
-          { label:'PB Cons. mês '+(pbProj.cons || '—'), data:pointAt(projAcum.cons, pbProj.cons), borderColor:'#ff4d6d', backgroundColor:'#ff4d6d', pointRadius:6, pointHoverRadius:8, showLine:false },
-          { label:'PB Base mês '+(pbProj.base || '—'), data:pointAt(projAcum.base, pbProj.base), borderColor:'#f5c542', backgroundColor:'#f5c542', pointRadius:6, pointHoverRadius:8, showLine:false },
-          { label:'PB Otim. mês '+(pbProj.otim || '—'), data:pointAt(projAcum.otim, pbProj.otim), borderColor:'#00e0a4', backgroundColor:'#00e0a4', pointRadius:6, pointHoverRadius:8, showLine:false }
-        ]
-      },
-      options:{
-        ...chartDefaults,
-        interaction:{mode:'index',intersect:false},
-        plugins: {
-          ...chartDefaults.plugins,
-          legend: {
-            labels: {
-              color:'#ffffff',
-              font:{family:'DM Mono',weight:'900',size:11},
-              boxWidth:10,
-              padding:12,
-              filter: item => !item.text.startsWith('PB ')
-            }
-          },
-          tooltip: {
-            callbacks: {
-              title: ctx => 'Mês ' + ctx[0].label,
-              label: ctx => `${ctx.dataset.label}: ${fmtFull(ctx.parsed.y)}`,
-              afterBody: ctx => {
-                const i = ctx?.[0]?.dataIndex ?? 0;
-                return [
-                  'Lucro mês cons.: ' + fmtFull(projection.cons.lucro[i]),
-                  'Lucro mês base: ' + fmtFull(projection.base.lucro[i]),
-                  'Lucro mês otim.: ' + fmtFull(projection.otim.lucro[i])
-                ];
-              }
-            }
-          }
-        },
-        scales:{
-          x:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},maxTicksLimit:12,callback:(_,i)=>i%6===0?`Mês ${months[i]}`:null},grid:{color:'rgba(255,255,255,0.04)'}},
-          y:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},callback:v=>fmt(v).replace('R$ ','')},grid:{color:'rgba(255,255,255,0.06)'}}
-        }
-      }
-    });
-  }
-
-
-
-
-  // Sensibilidade
   const ctx3 = document.getElementById('sensChart').getContext('2d');
   const colors = sensData.map(d => d[1] < 0 ? 'rgba(255,77,109,0.88)' : d[1] < 60000 ? 'rgba(255,176,0,0.88)' : 'rgba(0,224,164,0.88)');
   sensChart = new Chart(ctx3, {
@@ -2589,10 +1790,7 @@ function initCharts() {
     },
     options:{
       ...chartDefaults,
-      plugins:{
-        legend:{display:false},
-        tooltip:{callbacks:{label:ctx=>'Lucro mensal: '+fmtFull(ctx.parsed.y)}}
-      },
+      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>'Lucro mensal: '+fmtFull(ctx.parsed.y)}} },
       scales:{
         x:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},maxRotation:45},grid:{color:'rgba(255,255,255,0.04)'}},
         y:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},callback:v=>fmt(v).replace('R$ ','')},grid:{color:'rgba(255,255,255,0.06)'}}
@@ -2600,12 +1798,8 @@ function initCharts() {
     }
   });
 
-  // Despesas fixas
   const ctx4 = document.getElementById('fixosChart').getContext('2d');
-  const vibrantPalette = [
-    '#00e0b8', '#ffb000', '#ff4d6d', '#8b5cf6', '#38bdf8',
-    '#f97316', '#a3e635', '#e879f9', '#22c55e', '#facc15'
-  ];
+  const vibrantPalette = ['#8b5cf6', '#38bdf8', '#ff4d6d', '#00e0b8', '#ffb000', '#f97316', '#a3e635'];
   fixosChart = new Chart(ctx4, {
     type:'doughnut',
     data:{
@@ -2616,10 +1810,7 @@ function initCharts() {
       responsive:true,
       maintainAspectRatio:false,
       cutout:'60%',
-      plugins:{
-        tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${fmtFull(ctx.parsed)}`}},
-        legend:{display:false}
-      }
+      plugins:{ tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${fmtFull(ctx.parsed)}`}}, legend:{display:false} }
     }
   });
   buildFixosLegend(vibrantPalette);
@@ -2627,7 +1818,6 @@ function initCharts() {
 
 function buildFixosLegend(colors) {
   const el = document.getElementById('fixosCustomLegend');
-  if (!el) return;
   el.innerHTML = fixosData.labels.map((label, i) => ({
     label,
     value: Number(fixosData.values[i]) || 0,
@@ -2638,113 +1828,40 @@ function buildFixosLegend(colors) {
       <span class="fixos-legend-label">${item.label}</span>
       <span class="fixos-legend-value">${fmt(item.value)}</span>
     </div>`).join('');
+
+  const keyList = document.getElementById('fixos-key-list');
+  if (keyList) {
+    keyList.innerHTML = fixosData.labels.map((label, i) => {
+      const value = Number(fixosData.values[i]) || 0;
+      return `<div class="key-row"><span>${label}</span><strong>${fmtFull(value)}</strong></div>`;
+    }).join('');
+  }
 }
 
-// ── STATE ─────────────────────────────────────────────────────────────
 let current = 'base';
 
 function setScenario(key) {
   current = key;
   document.querySelectorAll('.tab').forEach((t,i) => {
-    t.classList.toggle('active', ['cons','base','otim'][i] === key);
+    t.classList.toggle('active', scenarioOrder[i] === key);
   });
   updateUI();
 }
 
 function updateUI() {
-  const s = scenarios[current];
-
-  // KPIs
-  document.getElementById('kpi-receita').textContent = fmt(s.receita);
-  document.getElementById('kpi-receita').className = 'kpi-value kpi-gold';
-  document.getElementById('kpi-receita-sub').textContent = 'Cenário ' + s.label;
-
-  const lucroEl = document.getElementById('kpi-lucro');
-  lucroEl.textContent = fmt(s.lucro);
-  lucroEl.className = 'kpi-value ' + (s.lucro >= 0 ? 'kpi-positive' : 'kpi-negative');
-  document.getElementById('kpi-margem-sub').textContent = 'Margem ' + pct(s.margem);
-
-  document.getElementById('kpi-pe').textContent = fmt(summary.pontoEquilibrio);
-  document.getElementById('kpi-pe-sub').textContent = 'Receita mínima / mês';
-
-  const pbEl = document.getElementById('kpi-payback');
-  pbEl.textContent = pbText(s.payback);
-  pbEl.className = 'kpi-value ' + (!s.payback ? 'kpi-negative' : s.payback > 60 ? 'kpi-negative' : s.payback > 36 ? 'kpi-amber' : 'kpi-positive');
-  document.getElementById('kpi-payback-sub').textContent = 'Linear · ' + pbYearsText(s.payback);
-
-  document.getElementById('kpi-invest').textContent = fmt(summary.investimentoTotal);
-  document.getElementById('kpi-invest-sub').textContent = 'COF: ' + fmt(summary.cofInvestimento);
-
-  // DRE Table
-  document.getElementById('dre-badge').textContent = s.label.toUpperCase() + ' · ' + fmt(s.receita);
-  const rows = [
-    ['Receita Bruta', s.receita, 1, 'val-gold', false],
-    ['(−) CMV (' + pct(s.cmvRate) + ')', -s.cmv, s.cmvRate, 'val-neg', false],
-    ['= Lucro Bruto', s.lucroBruto, s.lucroBruto/s.receita, 'val-pos', true],
-    ['(−) Tributos (' + pct(s.tributosRate) + ')', -s.tributos, s.tributosRate, 'val-neg', false],
-    ['(−) Taxas Cartão/PIX (' + pct(s.taxasRate) + ')', -s.taxas, s.taxasRate, 'val-neg', false],
-    ['(−) Royalties (' + pct(s.royaltiesRate) + ')', -s.royalties, s.royaltiesRate, 'val-neg', false],
-    ['(−) Marketing Local (' + pct(s.mktLocalRate) + ')', -s.mktLocal, s.mktLocalRate, 'val-neg', false],
-    ['(−) Fundo Mkt (' + pct(s.mktFundoRate) + ')', -s.mktFundo, s.mktFundoRate, 'val-neg', false],
-    ['= Margem Variável', s.margemVariavel, s.margemVariavel/s.receita, s.margemVariavel>=0?'val-pos':'val-neg', true],
-    ['(−) Despesas Fixas', -s.fixos, s.fixos/s.receita, 'val-neg', false],
-    ['= Lucro Líquido', s.lucro, s.margem, s.lucro>=0?'val-pos':'val-neg', true],
-  ];
-  document.getElementById('dre-body').innerHTML = rows.map(([label,val,pctV,cls,section]) =>
-    `<tr class="${section ? 'section-total' : ''}">
-      <td>${label}</td>
-      <td class="${cls}">${val<0?'('+fmt(Math.abs(val))+')':fmt(val)}</td>
-      <td class="${cls}">${pct(Math.abs(pctV))}</td>
-    </tr>`
-  ).join('');
-
-  // Payback projetado na curva de 60 meses
-  const pbNum = document.getElementById('pb-num');
-  const pbUn = document.getElementById('pb-un');
-  const pbStatus = document.getElementById('pb-status');
-  const pbBadge = document.getElementById('pb-badge');
-  const ring = document.getElementById('pb-ring');
-
-  if (s.paybackProjetado) {
-    const m = Math.round(s.paybackProjetado);
-    pbNum.textContent = m;
-    pbUn.textContent = 'meses';
-    pbStatus.textContent = 'PB projetado · ' + pbYearsText(m);
-    pbBadge.textContent = 'PROJETADO · ' + m + ' MESES';
-    const pctV = Math.min(Math.max((60 - m) / 60, 0), 1);
-    ring.style.setProperty('--pb-color', m > 48 ? '#ffb000' : '#00e0a4');
-    ring.style.setProperty('--pb-pct', Math.round(pctV * 360) + 'deg');
-  } else {
-    pbNum.textContent = '∞';
-    pbUn.textContent = '—';
-    pbStatus.textContent = 'Sem PB projetado em 60 meses';
-    pbBadge.textContent = 'SEM PB EM 60 MESES';
-    ring.style.setProperty('--pb-color', '#ff5a5f');
-    ring.style.setProperty('--pb-pct', '0deg');
-  }
-
-  document.getElementById('acum60').textContent = fmt(s.acum60);
-  document.getElementById('acum60').className = 'kpi-value ' + (s.acum60 >= 0 ? 'kpi-positive' : 'kpi-negative');
-  document.getElementById('margin-pct').textContent = pct(s.margem);
-  document.getElementById('margin-pct').className = 'kpi-value ' + (s.margem >= 0 ? 'kpi-positive' : 'kpi-negative');
-
-  document.getElementById('sens-badge').textContent = 'Breakeven = ' + fmt(summary.pontoEquilibrio);
-  document.getElementById('fixos-title').textContent = 'Despesas Fixas Mensais — ' + fmt(summary.despesasFixas);
+  const sensBadge = document.getElementById('sens-badge');
+  if (sensBadge) sensBadge.textContent = 'Breakeven moderado = ' + fmtFull(summary.pontoEquilibrio);
+  const fixosTitle = document.getElementById('fixos-title');
+  if (fixosTitle) fixosTitle.textContent = 'Composição de custos — Moderado (' + fmtFull(scenarios.base.receita) + ')';
 }
 
-// ── SENS TABLE ────────────────────────────────────────────────────────
 function buildSensTable() {
-  const pillMap = {
-    'Prejuízo': 'pill-red',
-    'Longo': 'pill-amber',
-    'Atenção': 'pill-amber',
-    'Bom': 'pill-green'
-  };
+  const pillMap = { 'Prejuízo': 'pill-red', 'Longo': 'pill-amber', 'Atenção': 'pill-amber', 'Bom': 'pill-green' };
   document.getElementById('sens-body').innerHTML = sensData.map(d => {
     const nearPE = Math.abs(d[0] - summary.pontoEquilibrio) <= 25000;
     return `<tr class="${nearPE ? 'row-highlight' : ''}">
-      <td class="${nearPE?'val-gold':''}" style="font-size:12px">${fmt(d[0])}</td>
-      <td class="${d[1]>=0?'val-pos':'val-neg'}">${d[1]<0?'('+fmt(Math.abs(d[1]))+')':fmt(d[1])}</td>
+      <td class="${nearPE?'val-gold':''}" style="font-size:12px">${fmtFull(d[0])}</td>
+      <td class="${d[1]>=0?'val-pos':'val-neg'}">${d[1]<0?'− '+fmtFull(Math.abs(d[1])):fmtFull(d[1])}</td>
       <td class="${d[2]>=0?'val-pos':'val-neg'}">${pct(d[2])}</td>
       <td>${d[4]?d[4].toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1})+'a':'—'}</td>
       <td><span class="pill ${pillMap[d[5]]||'pill-red'}">${d[5]}</span></td>
@@ -2752,9 +1869,128 @@ function buildSensTable() {
   }).join('');
 }
 
-// ── BOOT ─────────────────────────────────────────────────────────────
+
+function scenarioCardClass(key) {
+  return key === 'cons' ? 'scenario-cons' : key === 'base' ? 'scenario-base' : 'scenario-otim';
+}
+
+function scenarioColor(key) {
+  return key === 'cons' ? '#ff4d6d' : key === 'base' ? '#f5c542' : '#00e0a4';
+}
+
+function buildScenarioOverview() {
+  const el = document.getElementById('scenario-overview-grid');
+  if (!el) return;
+  el.innerHTML = scenarioOrder.map(key => {
+    const sc = scenarios[key];
+    return `<div class="scenario-overview-card ${scenarioCardClass(key)}">
+      <div class="scenario-overview-title">${sc.label}</div>
+      <div class="scenario-overview-value" style="color:${scenarioColor(key)}">${fmtFull(sc.receita)}</div>
+      <div class="mini-sub">Receita mensal projetada</div>
+      <div class="scenario-overview-meta">
+        <div class="key-row"><span>Resultado Líquido</span><strong style="color:${sc.resultado >= 0 ? scenarioColor(key) : '#ff4d6d'}">${fmtFull(sc.resultado)}</strong></div>
+        <div class="key-row"><span>Margem Líquida</span><strong>${pct(sc.resultadoRate || sc.margem)}</strong></div>
+        <div class="key-row"><span>PB Linear</span><strong>${pbText(sc.payback)}</strong></div>
+        <div class="key-row"><span>PB Projetado</span><strong>${sc.paybackProjetado ? sc.paybackProjetado + ' meses' : 'Sem PB'}</strong></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildPaybackCards() {
+  const el = document.getElementById('payback-cards');
+  if (!el) return;
+  el.innerHTML = scenarioOrder.map(key => {
+    const sc = scenarios[key];
+    const m = sc.paybackProjetado ? Math.round(sc.paybackProjetado) : null;
+    const ringColor = m ? (m > 48 ? '#ffb000' : scenarioColor(key)) : '#ff4d6d';
+    const deg = m ? Math.round(Math.min(Math.max((60 - m) / 60, 0), 1) * 360) : 0;
+    return `<div class="payback-scenario-card ${scenarioCardClass(key)}">
+      <div class="payback-display">
+        <div class="payback-scenario-title">${sc.label}</div>
+        <div class="pb-ring" style="--pb-color:${ringColor}; --pb-pct:${deg}deg">
+          <div class="pb-inner">
+            <div class="pb-number" style="color:${ringColor}">${m || '∞'}</div>
+            <div class="pb-unit">${m ? 'meses' : '—'}</div>
+          </div>
+        </div>
+        <div class="pb-label">${m ? 'PB projetado · ' + pbYearsText(m) : 'Sem PB em 60 meses'}</div>
+      </div>
+      <div class="payback-metrics">
+        <div>
+          <div class="payback-metric-label">Acum. mês 60</div>
+          <div class="payback-metric-value" style="color:${sc.acum60 >= 0 ? '#52c97a' : '#ff4d6d'}">${fmtFull(sc.acum60)}</div>
+        </div>
+        <div>
+          <div class="payback-metric-label">Margem líquida</div>
+          <div class="payback-metric-value" style="color:${scenarioColor(key)}">${pct(sc.margem)}</div>
+        </div>
+        <div>
+          <div class="payback-metric-label">PB linear</div>
+          <div class="payback-metric-value">${pbText(sc.payback)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildExecutive() {
+  const grid = document.getElementById('exec-dre-grid');
+  if (grid) {
+    const rows = dreCompareRows.filter(r => !r.section);
+    grid.innerHTML = scenarioOrder.map(key => {
+      const sc = scenarios[key];
+      return `<div class="exec-dre-card ${scenarioCardClass(key)}">
+        <div class="exec-dre-title" style="color:${scenarioColor(key)}">${sc.label}</div>
+        ${rows.map(row => {
+          const value = Number(row.values[key]) || 0;
+          const percent = row.pcts[key] || 0;
+          const isResult = row.result;
+          const isSubtotal = row.bold && !row.result;
+          const color = isResult ? (value >= 0 ? scenarioColor(key) : '#ff4d6d') : (row.negative ? '#ffffff' : scenarioColor(key));
+          return `<div class="exec-dre-row ${isResult ? 'result' : ''} ${isSubtotal ? 'subtotal' : ''}">
+            <span class="label">${row.label}</span>
+            <span class="value" style="color:${color}">${dreMoney(value, row.negative)}</span>
+            <span class="percent">${pct(Math.abs(percent))}</span>
+          </div>`;
+        }).join('')}
+      </div>`;
+    }).join('');
+  }
+
+  const sumBody = document.getElementById('exec-summary-body');
+  if (sumBody) {
+    sumBody.innerHTML = dashboardExec.summaryRows.map(r => {
+      const sc = scenarios[r.key];
+      const cls = r.key === 'cons' ? 'scenario-cons' : r.key === 'base' ? 'scenario-base' : 'scenario-otim';
+      return `<tr class="scenario-row ${cls}">
+        <td>${r.scenario}</td>
+        <td class="num">${fmtFull(sc.receita)}</td>
+        <td class="num ${sc.lucro >= 0 ? 'pos':'neg'}">${fmtFull(sc.lucro)}</td>
+        <td class="num ${sc.margem >= 0 ? 'pos':'neg'}">${pct(sc.margem)}</td>
+        <td class="num">${(sc.payback || 0).toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1})}</td>
+        <td>${sc.paybackProjetado ? sc.paybackProjetado + ' meses' : 'Sem PB'}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  const readBody = document.getElementById('exec-reading-body');
+  if (readBody) {
+    readBody.innerHTML = dashboardExec.leituraRows.map(r => {
+      const value = typeof r[1] === 'number' ? fmtFull(r[1]) : r[1];
+      return `<tr>
+        <td>${r[0]}</td><td>${value}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td>
+      </tr>`;
+    }).join('');
+  }
+}
+
+buildDreCompare();
+buildScenarioOverview();
 initCharts();
 buildSensTable();
+buildExecutive();
+buildPaybackCards();
 updateUI();
 </script>
 
