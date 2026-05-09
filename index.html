@@ -1359,66 +1359,48 @@
   </div>
 
   <div class="section-divider">PROJEÇÃO 60 MESES</div>
+
   <div class="chart-card wide">
     <div class="card-header">
-      <span class="card-title">Indicadores de Payback Projetado por Cenário</span>
-      <span class="card-badge">Pessimista · Moderado · Otimista</span>
+      <span class="card-title">Payback Linear por Cenário</span>
+      <span class="card-badge">Investimento ÷ lucro mensal</span>
+    </div>
+    <div class="payback-scenario-grid" id="payback-linear-cards"></div>
+  </div>
+
+  <div class="chart-card wide">
+    <div class="card-header">
+      <span class="card-title">Payback Projetado — Projecao_60M</span>
+      <span class="card-badge">Curva de maturação + sazonalidade</span>
     </div>
     <div class="payback-scenario-grid" id="payback-cards"></div>
   </div>
 
-  <div class="chart-card wide">
-    <div class="card-header">
-      <span class="card-title">Acumulado pós-CAPEX — receita linear (60 meses)</span>
-      <span class="card-badge">Lucro mensal fixo</span>
-    </div>
-    <div class="chart-wrap" style="height:260px">
-      <canvas id="acumChart"></canvas>
-    </div>
-  </div>
-
-  <div class="chart-card wide">
-    <div class="card-header">
-      <span class="card-title">Lucro acumulado pós-CAPEX — projeção em maturação (60 meses)</span>
-      <span class="card-badge">Lucro mensal variável</span>
-    </div>
-    <div class="chart-wrap receita-maturacao-wrap" style="height:330px;">
-      <canvas id="receitaMaturacaoChart"></canvas>
-    </div>
-    <div class="pb-caption" id="receitaPbCaption"></div>
+  <div style="display:none; visibility:hidden; height:0; overflow:hidden;" aria-hidden="true">
+    <canvas id="acumChart"></canvas>
+    <canvas id="receitaMaturacaoChart"></canvas>
+    <div id="receitaPbCaption"></div>
   </div>
 
   <div class="section-divider">SENSIBILIDADE</div>
-  <div class="grid-2">
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title">Faturamento × Lucro × Payback</span>
-        <span class="card-badge" id="sens-badge">−</span>
-      </div>
-      <div class="chart-wrap" style="height:300px">
-        <canvas id="sensChart"></canvas>
-      </div>
+  <div class="chart-card wide">
+    <div class="card-header">
+      <span class="card-title">Tabela de Sensibilidade</span>
+      <span class="card-badge" id="sens-badge">Lucro mensal</span>
     </div>
-
-    <div class="chart-card">
-      <div class="card-header">
-        <span class="card-title">Tabela de Sensibilidade</span>
-        <span class="card-badge">Lucro mensal</span>
-      </div>
-      <div style="max-height:320px;overflow-y:auto;">
-        <table class="sens-table">
-          <thead>
-            <tr>
-              <th>Receita/mês</th>
-              <th>Lucro</th>
-              <th>Margem</th>
-              <th>PB (anos)</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="sens-body"></tbody>
-        </table>
-      </div>
+    <div style="max-height:360px;overflow-y:auto;">
+      <table class="sens-table">
+        <thead>
+          <tr>
+            <th>Receita/mês</th>
+            <th>Lucro</th>
+            <th>Margem</th>
+            <th>PB (anos)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="sens-body"></tbody>
+      </table>
     </div>
   </div>
 
@@ -1777,23 +1759,28 @@ function initCharts() {
     }
   });
 
-  const ctx3 = document.getElementById('sensChart').getContext('2d');
-  const colors = sensData.map(d => d[1] < 0 ? 'rgba(255,77,109,0.88)' : d[1] < 60000 ? 'rgba(255,176,0,0.88)' : 'rgba(0,224,164,0.88)');
-  sensChart = new Chart(ctx3, {
-    type:'bar',
-    data:{
-      labels: sensData.map(d=>'R$ '+(d[0]/1000).toLocaleString('pt-BR', {maximumFractionDigits:0})+'k'),
-      datasets:[{ label:'Lucro mensal', data:sensData.map(d=>d[1]), backgroundColor:colors, borderRadius:3 }]
-    },
-    options:{
-      ...chartDefaults,
-      plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>'Lucro mensal: '+fmtFull(ctx.parsed.y)}} },
-      scales:{
-        x:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},maxRotation:45},grid:{color:'rgba(255,255,255,0.04)'}},
-        y:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},callback:v=>fmt(v).replace('R$ ','')},grid:{color:'rgba(255,255,255,0.06)'}}
+  const sensCanvas = document.getElementById('sensChart');
+  if (sensCanvas) {
+    const ctx3 = sensCanvas.getContext('2d');
+    const colors = sensData.map(d => d[1] < 0 ? 'rgba(255,77,109,0.88)' : d[1] < 60000 ? 'rgba(255,176,0,0.88)' : 'rgba(0,224,164,0.88)');
+    sensChart = new Chart(ctx3, {
+      type:'bar',
+      data:{
+        labels: sensData.map(d=>'R$ '+(d[0]/1000).toLocaleString('pt-BR', {maximumFractionDigits:0})+'k'),
+        datasets:[{ label:'Lucro mensal', data:sensData.map(d=>d[1]), backgroundColor:colors, borderRadius:3 }]
+      },
+      options:{
+        ...chartDefaults,
+        plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>'Lucro mensal: '+fmtFull(ctx.parsed.y)}} },
+        scales:{
+          x:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},maxRotation:45},grid:{color:'rgba(255,255,255,0.04)'}},
+          y:{ticks:{color:'#ffffff',font:{family:'DM Mono',weight:'800',size:10},callback:v=>fmt(v).replace('R$ ','')},grid:{color:'rgba(255,255,255,0.06)'}}
+        }
       }
-    }
-  });
+    });
+
+
+  }
 
   const ctx4 = document.getElementById('fixosChart').getContext('2d');
   const vibrantPalette = ['#8b5cf6', '#38bdf8', '#ff4d6d', '#00e0b8', '#ffb000', '#f97316', '#a3e635'];
@@ -1894,6 +1881,45 @@ function buildScenarioOverview() {
   }).join('');
 }
 
+
+function buildPaybackLinearCards() {
+  const el = document.getElementById('payback-linear-cards');
+  if (!el) return;
+  el.innerHTML = scenarioOrder.map(key => {
+    const sc = scenarios[key];
+    const m = sc.payback ? Math.round(sc.payback) : null;
+    const ringColor = m ? (m > 48 ? '#ffb000' : scenarioColor(key)) : '#ff4d6d';
+    const deg = m ? Math.round(Math.min(Math.max((60 - m) / 60, 0), 1) * 360) : 0;
+    const acumLinear60 = (Number(sc.lucro) * 60) - Number(summary.investimentoTotal);
+    return `<div class="payback-scenario-card ${scenarioCardClass(key)}">
+      <div class="payback-display">
+        <div class="payback-scenario-title">${sc.label}</div>
+        <div class="pb-ring" style="--pb-color:${ringColor}; --pb-pct:${deg}deg">
+          <div class="pb-inner">
+            <div class="pb-number" style="color:${ringColor}">${m || '∞'}</div>
+            <div class="pb-unit">${m ? 'meses' : '—'}</div>
+          </div>
+        </div>
+        <div class="pb-label">${m ? 'PB linear · ' + pbYearsText(m) : 'Sem PB em 60 meses'}</div>
+      </div>
+      <div class="payback-metrics">
+        <div>
+          <div class="payback-metric-label">Lucro mensal</div>
+          <div class="payback-metric-value" style="color:${sc.lucro >= 0 ? scenarioColor(key) : '#ff4d6d'}">${fmtFull(sc.lucro)}</div>
+        </div>
+        <div>
+          <div class="payback-metric-label">Acum. linear mês 60</div>
+          <div class="payback-metric-value" style="color:${acumLinear60 >= 0 ? '#52c97a' : '#ff4d6d'}">${fmtFull(acumLinear60)}</div>
+        </div>
+        <div>
+          <div class="payback-metric-label">Margem líquida</div>
+          <div class="payback-metric-value" style="color:${scenarioColor(key)}">${pct(sc.margem)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function buildPaybackCards() {
   const el = document.getElementById('payback-cards');
   if (!el) return;
@@ -1987,6 +2013,7 @@ buildScenarioOverview();
 initCharts();
 buildSensTable();
 buildExecutive();
+buildPaybackLinearCards();
 buildPaybackCards();
 updateUI();
 </script>
